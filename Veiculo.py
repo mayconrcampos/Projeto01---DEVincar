@@ -2,7 +2,7 @@ class Veiculo:
     def __init__(self) -> None:
         self.chassi = str
         self.data_fab = str
-        self.nome = str
+        self.modelo = str
         self.placa = str
         self.valor = float
         self.cpf_compr = str
