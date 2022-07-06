@@ -116,9 +116,6 @@ class Utils:
             else:
                 cpflimpo.append(validando)
 
-            print('Resultado da Verificação de CPF!')
-            print('-='*30)
-
             '''Abaixo tem uma estrutura que verifica se não se trata de uma sequencia de números iguais.'''
             repetido = []
             tudo_igual = 0
@@ -135,12 +132,106 @@ class Utils:
             Se forem diferentes, o CPF é inválido.
             '''
             if compara_cpf == cpflimpo and not tudo_igual:
-                print(f'O CPF: {cpflimpo} é válido!!')
+                cpf = ""
+                
+                for num in cpflimpo:
+                    cpf += f"{num}"
+                    
+
+                    if len(cpf) == 3 or len(cpf) == 7:
+                        cpf += "."
+                    elif len(cpf) == 11:
+                        cpf += "-"
+                        
+                return cpf
+
+                
             else:
-                print(f'O CPF: {cpflimpo} não é válido!!')
+                return False
         
         else:
-            print("CPF inválido")
+            return False
+    
 
+    @staticmethod
+    def gera_cpf():
+        cpf_completo = []
+        for i in range(0, 12):
+            nums_aleatorios = randint(0, 9)
+            cpf_completo.append(str(nums_aleatorios))
 
-Utils.valida_cpf("03772137997")
+            '''Enche uma lista com todos os 11 dígitos.'''
+            compara_cpf = []
+
+        for num in cpf_completo:
+            if num.isnumeric():
+                compara_cpf.append(int(num))
+
+        '''Fatia a lista criada do índice 0 a 9'''
+        cpflimpo = compara_cpf[0:9]
+
+        '''Validando Décimo Dígito'''
+        controle = 10
+        soma = 0
+        for numero in cpflimpo:
+            multiplica = numero * controle
+            soma += multiplica
+            controle -= 1
+
+        validando = 11 - (soma % 11)
+        if validando > 9:
+            validando = 0
+            cpflimpo.append(validando)
+        else:
+            cpflimpo.append(validando)
+
+            '''Validando Décimo Primeiro Dígito'''
+        controle = 11
+        soma = 0
+        for numero in cpflimpo:
+            multiplica = numero * controle
+            soma += multiplica
+            controle -= 1
+
+        validando = 11 - (soma % 11)
+        if validando > 9:
+            validando = 0
+            cpflimpo.append(validando)
+        else:
+            cpflimpo.append(validando)
+        
+        """
+        Transformando lista em string do CPF formatado com pontos e o traço
+        """
+        cpf_formatado_str = ""
+        
+        for n in cpflimpo:
+            cpf_formatado_str += f"{n}"
+
+            if len(cpf_formatado_str) == 3 or len(cpf_formatado_str) == 7:
+                cpf_formatado_str += "."
+            elif len(cpf_formatado_str) == 11:
+                cpf_formatado_str += "-"
+        
+
+        return cpf_formatado_str
+
+    @staticmethod
+    def sortear_cor():
+        cores = ["BRANCO", "PRETO", "ROXO", "AMARELO"]
+
+        return cores[randint(0, 3)]
+    
+    @staticmethod
+    def valida_portas(num: str):
+        try:
+            num = int(num)
+
+            if num == 2 or num == 4:
+                return num
+            else:
+                return False
+                
+        except ValueError:
+            print("Número inválido")
+       
