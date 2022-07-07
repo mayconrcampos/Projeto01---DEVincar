@@ -276,7 +276,7 @@ class Carro(Veiculo):
                 print("PROCURANDO CARRO NA BASE DE DADOS".center(50, "-"))
 
                 if Database.existe_PLACA(placa=placa):
-                    Database.busca_por_PLACA(placa=placa)
+                    Database.busca_por_PLACA(placa=placa, tipo="Carro")
                     print("PLACA ENCONTRADA")
                     break
                 else:
@@ -362,9 +362,9 @@ class Carro(Veiculo):
 
 c = Carro()
 #
-c.vender_veiculo()
+#c.vender_veiculo()
 ##DB.adicionar_veiculo(c)
 c.listar_infos()
 #c.listar_carro("13V XXOUIS QV 5K7IJF")
-#c.alterar_infos()
+c.alterar_infos()
 
