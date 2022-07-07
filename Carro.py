@@ -1,7 +1,8 @@
 from Veiculo import Veiculo
 from utils import Utils
 from os import system
-from tinydb import TinyDB, Query
+from Database import Database
+
 
 class Carro(Veiculo):
     def __init__(self) -> None:
@@ -11,10 +12,9 @@ class Carro(Veiculo):
         self.combustivel = None
         self.potencia = None
 
-        self.carros = TinyDB("carros.json")
     
     def vender_veiculo(self):
-        print("VENDA DO VEÍCULO".center(100, "-"))
+        print("VENDA DE CARRO".center(100, "-"))
 
         print("GERANDO NÚMERO DE CHASSI")
         chassi = Utils.gera_chassi()
@@ -38,7 +38,7 @@ class Carro(Veiculo):
                 break
         
         while True:
-            modelo = input("MODELO: ")
+            modelo = input("MODELO: ").upper()
             system("clear")
 
             if not modelo:
@@ -50,7 +50,7 @@ class Carro(Veiculo):
                 break
         
         while True:
-            placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ")
+            placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
             system("clear")
 
             if not Utils.valida_placa(placa):
@@ -59,9 +59,12 @@ class Carro(Veiculo):
                 print("OU NO FORMATO MERCOSUL: MMM0M00")
                 continue
             else:
-                self.placa = Utils.valida_placa(placa)
-                print("PLACA INSERIDA COM SUCESSO")
-                break
+                if Database.existe_PLACA(placa):
+                    print("PLACA JÁ CADASTRADA NO SISTEMA! DIGITE OUTRA!")
+                else:
+                    self.placa = Utils.valida_placa(placa)
+                    print("PLACA INSERIDA COM SUCESSO")
+                    break
         
         while True:
             valor = input("DIGITE O VALOR: R$: ")
@@ -98,6 +101,7 @@ class Carro(Veiculo):
                                 print(f"CPF {self.cpf_compr} GERADO E INSERIDO COM SUCESSO!")
                                 break
                             case "2":
+                                self.cpf_compr = False
                                 break
                             case _:
                                 print("OPÇÃO INVÁLIDA")
@@ -119,10 +123,10 @@ class Carro(Veiculo):
 
         while True:
             print("ESCOLHA A COR".center(50, "-"))
-            print("1. BRANCO")
-            print("2. PRETO")
-            print("3. ROXO")
-            print("4. AMARELO")
+            Utils.print_BRANCO("1. BRANCO")
+            Utils.print_PRETO("2. PRETO")
+            Utils.print_ROXO("3. ROXO")
+            Utils.print_AMARELO("4. AMARELO")
             print("5. INDECISO? Você pode Sortear a COR")
 
             opcao_cor = input("Opção: ")
@@ -131,16 +135,16 @@ class Carro(Veiculo):
             if opcao_cor.isnumeric():
                 match opcao_cor:
                     case "1":
-                        print("1. BRANCO")
+                        Utils.print_BRANCO()
                         self.cor = "BRANCO"
                     case "2":
-                        print("2. PRETO")
+                        Utils.print_PRETO()
                         self.cor = "PRETO"
                     case "3":
-                        print("3. ROXO")
+                        Utils.print_ROXO()
                         self.cor = "ROXO"
                     case "4":
-                        print("4. AMARELO")
+                        Utils.print_AMARELO()
                         self.cor = "AMARELO"
                     case "5":
                         print("5. SORTEAR COR")
@@ -234,6 +238,7 @@ class Carro(Veiculo):
         
         
         carrodicio = {
+            "tipo": "Carro",
             "chassi": self.chassi,
             "data_fab": self.data_fab,
             "modelo": self.modelo,
@@ -246,37 +251,120 @@ class Carro(Veiculo):
             "potencia": self.potencia         
         }
 
-        self.__adicionar_carro(carrodicio)
+        Database.adicionar_veiculo(veiculo=carrodicio)
               
         
     def listar_infos(self):
-        self.carros.all()
+        Database.listar_VEICULOS("Carro")
 
-        for carro in self.carros:
-            print(carro) 
 
     def alterar_infos(self):
-        pass
-    
-    def listar_carro(self, chassi: str):
-        search = Query()
+        print("LISTANDO CARROS VENDIDOS".center(50, "-"))
         
-        lista = self.carros.search(search.chassi == chassi)
+        
+        while True:
+            Database.listar_VEICULOS("Carro")
+            placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
+            system("clear")
+
+            if not Utils.valida_placa(placa):
+                print("DIGITE UMA PLACA CORRETA")
+                print("DEVE SER NO FORMATO ANTIGO MMM0000")
+                print("OU NO FORMATO MERCOSUL: MMM0M00")
+                continue
+            else:
+                print("PROCURANDO CARRO NA BASE DE DADOS".center(50, "-"))
+
+                if Database.existe_PLACA(placa=placa):
+                    Database.busca_por_PLACA(placa=placa)
+                    print("PLACA ENCONTRADA")
+                    break
+                else:
+                    print("PLACA NÃO ENCONTRADA")
+        
+
+        while True:
+            print("ESCOLHA A COR".center(50, "-"))
+            print("1. BRANCO")
+            print("2. PRETO")
+            print("3. ROXO")
+            print("4. AMARELO")
+            print("5. INDECISO? Você pode Sortear a COR")
+
+            opcao_cor = input("Opção: ")
+            system("clear")
+
+            if opcao_cor.isnumeric():
+                match opcao_cor:
+                    case "1":
+                        print("1. BRANCO")
+                        self.cor = "BRANCO"
+                    case "2":
+                        print("2. PRETO")
+                        self.cor = "PRETO"
+                    case "3":
+                        print("3. ROXO")
+                        self.cor = "ROXO"
+                    case "4":
+                        print("4. AMARELO")
+                        self.cor = "AMARELO"
+                    case "5":
+                        print("5. SORTEAR COR")
+
+                        while True:
+                            sortear = input("Tecle ENTER pra sortear: ")
+                            system("clear")
+
+                            if not sortear:
+                                self.cor = Utils.sortear_cor()
+                                print(f"COR SORTEADA: {self.cor}")
+                                break
+                            else:
+                                self.cor = Utils.sortear_cor()
+                                print(f"COR SORTEADA: {self.cor}")
+                                break
+
+                    case _:
+                        print("Opção inválida")
+                
+            else:
+                print("Opção numérica inválida")
+            
+            if self.cor:
+                break
+        
+        while True:
+            valor = input("DIGITE O VALOR: R$: ")
+            system("clear")
+
+            if not Utils.valida_valor(valor):
+                print("DIGITE UM VALOR MONETÁRIO VÁLIDO")
+                print("PODE SER NÚMERO INTEIRO (100)")
+                print("PODE SER NÚMERO COM PONTO PRA CASA DECIMAL (100.00)")
+                print("PODE SER NÚMERO COM VIRGULA PRA CASA DECIMAL (100,00)")
+                continue
+            else:
+                valor = Utils.valida_valor(valor)
+                print("VALOR INSERIDO COM SUCESSO")
+                break
+        
+        
+        Database.alterar_VEICULO(placa=placa, cor=self.cor, valor=valor)
+
+        Database.busca_por_PLACA(placa=placa, tipo="Carro")
+        
+        
 
 
-        if lista:
-            for carro in lista:
-                print(carro)
-        else:
-            print(f"CARRO COM CHASSI {chassi} NÃO ENCONTRADO")
 
-    def __adicionar_carro(self, carro: dict):
-        self.carros.insert(carro)
+
 
 
 c = Carro()
-
+#
 c.vender_veiculo()
-#DB.adicionar_carro(c)
+##DB.adicionar_veiculo(c)
 c.listar_infos()
 #c.listar_carro("13V XXOUIS QV 5K7IJF")
+#c.alterar_infos()
+
