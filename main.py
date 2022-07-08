@@ -1,5 +1,4 @@
-from ctypes import util
-from pickle import FALSE
+
 from Camionete import Camionete
 from Carro import Carro
 from Database import Database
@@ -7,9 +6,12 @@ from MotoTriciclo import MotoTriciclo
 from utils import Utils
 from Historico import Historico
 
+
+
 carro = Carro()
 moto = MotoTriciclo()
 camionete = Camionete()
+
 
 
 def menu_fabricacao(unidades: int):
@@ -20,6 +22,8 @@ def menu_fabricacao(unidades: int):
         Utils.print_formatado("3. CAMIONETE")
 
         opcao_categoria = input("Opção: ")
+
+        Utils.clear_tela()
 
         if opcao_categoria.isnumeric():
                                 
@@ -49,8 +53,9 @@ def menu_fabricacao(unidades: int):
 
 
 
-
-                         
+    """
+    MENU PRINCIPAL
+    """
 
 while True:
     Utils.print_formatado("SISTEMA GERENCIADOR DE FABRICAÇÃO E VENDA DE VEÍCULOS - DEVinCAR")
@@ -67,6 +72,8 @@ while True:
 
     opcao = input("Opção: ")
 
+    Utils.clear_tela()
+
     if opcao.isnumeric():
         match opcao:
             case "1":
@@ -79,6 +86,8 @@ while True:
 
                     opcao_unidades = input("Opção: ")
 
+                    Utils.clear_tela()
+
                     unidades = 0
 
                     if opcao_unidades.isnumeric():
@@ -87,16 +96,19 @@ while True:
                             unidades = 10
 
                             menu_fabricacao(unidades=unidades)
+                            break
 
                         elif opcao_unidades == "2":
                             unidades = 20
 
                             menu_fabricacao(unidades=unidades)
+                            break
 
                         elif opcao_unidades == "3":
                             unidades = 50
 
                             menu_fabricacao(unidades=unidades)
+                            break
 
                         elif opcao_unidades == "4":
                             print("Retornando ao Menu Principal")
@@ -117,17 +129,19 @@ while True:
 
                     opcao = input("Opção: ")
 
+                    Utils.clear_tela()
+
                     if opcao.isnumeric():
                         if opcao == "1":
                             carro.listar_infos("estoque")
                             break
 
                         elif opcao == "2":
-                            moto.listar_infos()
+                            moto.listar_infos("Moto/Triciclo")
                             break
 
                         elif opcao == "3":
-                            camionete.listar_infos()
+                            camionete.listar_infos("Camionete")
                             break
 
                         elif opcao == "4":
@@ -148,6 +162,8 @@ while True:
                     Utils.print_formatado("4. RETORNAR AO MENU PRINCIPAL")
 
                     opcao = input("Opção: ")
+
+                    Utils.clear_tela()
 
                     if opcao.isnumeric():
                         if opcao == "1":
@@ -176,6 +192,8 @@ while True:
 
                     opcao = input("Opção: ")
 
+                    Utils.clear_tela()
+
                     if opcao.isnumeric():
                         if opcao == "1":
                             carro.listar_infos("vendido")
@@ -200,6 +218,8 @@ while True:
                     
                     opcao = input("Opção: ")
 
+                    Utils.clear_tela()
+
                     if opcao.isnumeric():
                         if opcao == "1":
                             Database.listar_mais_CARO_OU_MAIS_BARATO(vendido=False, caro=True)
@@ -219,6 +239,8 @@ while True:
                     Utils.print_formatado("2. VENDIDOS")
                     
                     opcao = input("Opção: ")
+
+                    Utils.clear_tela()
 
                     if opcao.isnumeric():
                         if opcao == "1":

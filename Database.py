@@ -110,9 +110,11 @@ class Database:
             if status == "estoque":
                 Utils.print_formatado(f"LISTANDO TODOS OS VEICULOS EM ESTOQUE DA CATEGORIA: {tipo}")
                 total_estoque = 0
+                unidades = 0
                 for veiculo in lista:
                     if not veiculo['vendido']:
                         total_estoque += veiculo['valor']
+                        unidades += 1
                         Utils.print_formatado("-")
                         print(f"TIPO  : {veiculo['tipo']:<7} CHASSI: {veiculo['chassi']:<25} DATA FAB: {veiculo['data_fab']:<15} MODELO: {veiculo['modelo']:<30}")
                         print(f"PLACA : {'0KM' if not veiculo['placa'] else veiculo['placa']:<7} VALOR (R$): {veiculo['valor']:<21.2f} CPF: {'N/D' if not veiculo['cpf_compr'] else veiculo['cpf_compr']:<20} COR: {veiculo['cor']}")
@@ -120,22 +122,24 @@ class Database:
                     
                 
                 if total_estoque > 0:
-                    print(f"TOTAL EM ESTOQUE NA CATEGORIA {tipo}: R$ {total_estoque:.2f}")
+                    print(f"TOTAL EM ESTOQUE NA CATEGORIA {tipo}: \n{unidades} UNIDADES | TOTAL R${total_estoque:.2f}\n\n\n")
                 else:
                     print(f"NÃO HÁ ITENS DA CATEGORIA {tipo} NO ESTOQUE. VOCÊ PRECISA FABRICAR")
             else:
                 Utils.print_formatado(f"LISTANDO TODOS OS VEICULOS VENDIDOS DA CATEGORIA: {tipo}")
                 total_vendidos = 0
+                unidades = 0
                 for veiculo in lista:
                     if veiculo['vendido']:
                         total_vendidos += veiculo['valor']
+                        unidades += 1
                         Utils.print_formatado("-")
                         print(f"TIPO  : {veiculo['tipo']:<7} CHASSI: {veiculo['chassi']:<25} DATA FAB: {veiculo['data_fab']:<15} MODELO: {veiculo['modelo']:<30}")
                         print(f"PLACA : {'0KM' if not veiculo['placa'] else veiculo['placa']:<7} VALOR (R$): {veiculo['valor']:<21.2f} CPF: {'N/D' if not veiculo['cpf_compr'] else veiculo['cpf_compr']:<20} COR: {veiculo['cor']}")
                         print(f"PORTAS: {'N/D' if not veiculo['portas'] else veiculo['portas']:<7} COMBUSTIVEL: {veiculo['combustivel']:<20} POTENCIA: {veiculo['potencia']:<15} STATUS: {'Vendido' if veiculo['vendido'] else 'ESTOQUE'}\n")
                 
                 if total_vendidos > 0:
-                    print(f"TOTAL FATURADO NA CATEGORIA {tipo}: R$ {total_vendidos:.2f}")
+                    print(f"TOTAL FATURADO NA CATEGORIA {tipo}:\n{unidades} UNIDADES | R$ {total_vendidos:.2f}\n\n\n")
                 else:
                     print(f"NÃO EXISTEM ITENS DA CATEGORIA {tipo} VENDIDOS")
 

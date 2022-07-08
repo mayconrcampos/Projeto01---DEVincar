@@ -1,9 +1,8 @@
 from datetime import datetime
-from os import stat
 from random import randint
-from tracemalloc import Statistic
 from faker import Faker
 from faker_vehicle import VehicleProvider
+from os import system, name
 
 fake = Faker(["pt-BR", "pt-BR", "pt-BR", "pt-BR"])
 fake.add_provider(VehicleProvider)
@@ -342,8 +341,13 @@ class Utils:
     @staticmethod
     def gera_COR():
         return fake.safe_color_name()
+    
+    @staticmethod
+    def clear_tela():
+        return system("cls") if name == "nt" else system("clear")
+        
 
-
+#Utils.limpa_tela()
 #print(Utils.gerador_de_valor())
 #print(Utils.gera_data_HOJE())
 #Utils.print_BRANCO("BRANCO")
