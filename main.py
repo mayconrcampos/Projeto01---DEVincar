@@ -1,6 +1,8 @@
 from ctypes import util
+from pickle import FALSE
 from Camionete import Camionete
 from Carro import Carro
+from Database import Database
 from MotoTriciclo import MotoTriciclo
 from utils import Utils
 from Historico import Historico
@@ -117,11 +119,17 @@ while True:
 
                     if opcao.isnumeric():
                         if opcao == "1":
-                            carro.listar_infos()
+                            carro.listar_infos("estoque")
+                            break
+
                         elif opcao == "2":
                             moto.listar_infos()
+                            break
+
                         elif opcao == "3":
                             camionete.listar_infos()
+                            break
+
                         elif opcao == "4":
                             print("RETORNANDO AO MENU PRINCIPAL")
                             break
@@ -144,6 +152,35 @@ while True:
                     if opcao.isnumeric():
                         if opcao == "1":
                             carro.vender_veiculo()
+                            break
+
+                        elif opcao == "2":
+                            pass
+                        elif opcao == "3":
+                            pass
+                        elif opcao == "4":
+                            print("VOCÊ RETORNOU AO MENU PRINCIPAL")
+                            break
+
+                        else:
+                            print("Opção inválida")
+                    else:
+                        print("Opção numérica inválida")
+            case "4":
+                while True:
+                    Utils.print_formatado("ESCOLHA A CATEGORIA PARA LISTAR VEÍCULOS VENDIDOS")
+                    Utils.print_formatado("1. CARRO")
+                    Utils.print_formatado("2. Moto/Triciclo")
+                    Utils.print_formatado("3. Camionete")
+                    Utils.print_formatado("4. RETORNAR AO MENU PRINCIPAL")
+
+                    opcao = input("Opção: ")
+
+                    if opcao.isnumeric():
+                        if opcao == "1":
+                            carro.listar_infos("vendido")
+                            break
+                        \
                         elif opcao == "2":
                             pass
                         elif opcao == "3":
@@ -155,12 +192,46 @@ while True:
                             print("Opção inválida")
                     else:
                         print("Opção numérica inválida")
-            case "4":
-                pass
             case "5":
-                pass
+                while True:
+                    print("VISUALIZANDO VEÍCULO MAIS CARO")
+                    Utils.print_formatado("1. EM ESTOQUE")
+                    Utils.print_formatado("2. VENDIDOS")
+                    
+                    opcao = input("Opção: ")
+
+                    if opcao.isnumeric():
+                        if opcao == "1":
+                            Database.listar_mais_CARO_OU_MAIS_BARATO(vendido=False, caro=True)
+                            break
+
+                        elif opcao == "2":
+                            Database.listar_mais_CARO_OU_MAIS_BARATO(vendido=True, caro=True)
+                            break
+                        else:
+                            print("Opção inválida!")
+                    else:
+                        print("Opção numérica inválida")
             case "6":
-                pass
+                while True:
+                    print("VISUALIZANDO VEÍCULO MAIS BARATO")
+                    Utils.print_formatado("1. EM ESTOQUE")
+                    Utils.print_formatado("2. VENDIDOS")
+                    
+                    opcao = input("Opção: ")
+
+                    if opcao.isnumeric():
+                        if opcao == "1":
+                            Database.listar_mais_CARO_OU_MAIS_BARATO(vendido=False, caro=False)
+                            break
+
+                        elif opcao == "2":
+                            Database.listar_mais_CARO_OU_MAIS_BARATO(vendido=True, caro=False)
+                            break
+                        else:
+                            print("Opção inválida!")
+                    else:
+                        print("Opção numérica inválida")
             case "7":
                 print("Você saiu do Sistema!")
                 break

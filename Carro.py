@@ -47,7 +47,7 @@ class Carro(Veiculo):
 
     def vender_veiculo(self):
         Utils.print_formatado("VENDA DE CARRO")
-        self.listar_infos()
+        self.listar_infos("estoque")
 
         while True:
             chassi = input("DIGITE O CHASSI DO CARRO DESEJADO: (COPIE E COLE AQUI): ----> ").upper().strip()
@@ -304,8 +304,8 @@ class Carro(Veiculo):
         #Database.adicionar_veiculo(veiculo=carrodicio)
               
         
-    def listar_infos(self):
-        Database.listar_VEICULOS("Carro")
+    def listar_infos(self, status: str):
+        Database.listar_VEICULOS("Carro", status=status)
 
 
     def alterar_infos(self):

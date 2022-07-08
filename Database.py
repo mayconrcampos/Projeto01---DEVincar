@@ -15,32 +15,130 @@ class Database:
     
 
     @staticmethod
-    def listar_infos():
+    def listar_mais_CARO_OU_MAIS_BARATO(vendido: bool, caro: bool):
         veiculos = carros.all()
 
         if veiculos:
-            valores = []
-            for veiculo in carros:
-                print(veiculo)
-                valores.append(veiculo['valor']) 
-            
-            return [sum(valores), max(valores), min(valores)]
+            # SE FOR VENDIDO
+            if vendido:
+                # SE FOR CARO
+                if caro:
+                    VENDIDOS = []
+                    for veiculo in carros:
+                        if veiculo['vendido']:
+                            VENDIDOS.append(veiculo) 
+    
+                    if len(VENDIDOS) > 0:
+                        valores = [x['valor'] for x in VENDIDOS]
+                        mais_caro = None
+                        for _ in range(0, len(VENDIDOS)):
+                            if VENDIDOS[_]['valor'] == max(valores):
+                                mais_caro = VENDIDOS[_]
+                            
+                    Utils.print_formatado("VEICULO VENDIDO MAIS CARO")
+                    print(f"TIPO: {mais_caro['tipo']} MODELO: {mais_caro['modelo']} \nPOTENCIA: {mais_caro['potencia']} COMBUSTIVEL: {mais_caro['combustivel']} VALOR: \nR${mais_caro['valor']:.2f}\n\n\n")
+                    Utils.print_formatado("-")
+                
+                # SE FOR BARATO
+                else:
+                    VENDIDOS = []
+                    for veiculo in carros:
+                        if veiculo['vendido']:
+                            VENDIDOS.append(veiculo) 
+    
+                    if len(VENDIDOS) > 0:
+                        valores = [x['valor'] for x in VENDIDOS]
+                        mais_barato = None
+                        for _ in range(0, len(VENDIDOS)):
+                            if VENDIDOS[_]['valor'] == min(valores):
+                                mais_barato = VENDIDOS[_]
+    
+                    Utils.print_formatado("VEICULO VENDIDO MAIS BARATO")
+                    print(f"TIPO: {mais_barato['tipo']} MODELO: {mais_barato['modelo']} \nPOTENCIA: {mais_barato['potencia']} COMBUSTIVEL: {mais_barato['combustivel']} VALOR: \nR${mais_barato['valor']:.2f}\n\n\n")
+                    Utils.print_formatado("-")
+
+
+            # SE FOR EM ESTOQUE
+            else:
+                if caro:
+                    ESTOQUE = []
+                    for veiculo in carros:
+                        if not veiculo['vendido']:
+                            ESTOQUE.append(veiculo) 
+    
+                    if len(ESTOQUE) > 0:
+                        valores = [x['valor'] for x in ESTOQUE]
+                        mais_caro = None
+                        for _ in range(0, len(ESTOQUE)):
+                            if ESTOQUE[_]['valor'] == max(valores):
+                                mais_caro = ESTOQUE[_]
+                                break
+    
+                    Utils.print_formatado("VEICULO EM ESTOQUE MAIS CARO")
+                    print(f"TIPO: {mais_caro['tipo']} MODELO: {mais_caro['modelo']} \nPOTENCIA: {mais_caro['potencia']} COMBUSTIVEL: {mais_caro['combustivel']} VALOR: \nR${mais_caro['valor']:.2f}\n\n\n")
+                    Utils.print_formatado("-")
+                
+                # SE FOR BARATO
+                else:
+                    ESTOQUE = []
+                    for veiculo in carros:
+                        if not veiculo['vendido']:
+                            ESTOQUE.append(veiculo) 
+    
+                    if len(ESTOQUE) > 0:
+                        valores = [x['valor'] for x in ESTOQUE]
+                        mais_barato = None
+                        for _ in range(0, len(ESTOQUE)):
+                            if ESTOQUE[_]['valor'] == min(valores):
+                                mais_barato = ESTOQUE[_]
+    
+                    Utils.print_formatado("VEICULO EM ESTOQUE MAIS BARATO")
+                    print(f"TIPO: {mais_barato['tipo']} MODELO: {mais_barato['modelo']} \nPOTENCIA: {mais_barato['potencia']} COMBUSTIVEL: {mais_barato['combustivel']} VALOR: \nR${mais_barato['valor']:.2f}\n\n\n")
+                    Utils.print_formatado("-")
+ 
         else:
-            print("Lista Vazia")
+            print("NÃO EXISTEM CARROS CADASTRADOS")
+            
     
     @staticmethod
-    def listar_VEICULOS(tipo: str):
+    def listar_VEICULOS(tipo: str, status: str = "vendido"):
         busca = Query()
     
         lista = carros.search(busca.tipo == tipo)
         
         if lista:
-            Utils.print_formatado(f"LISTANDO TODOS OS VEICULOS DA CATEGORIA: {tipo}")
-            for veiculo in lista:
-                Utils.print_formatado("-")
-                print(f"TIPO  : {veiculo['tipo']:<7} CHASSI: {veiculo['chassi']:<25} DATA FAB: {veiculo['data_fab']:<15} MODELO: {veiculo['modelo']:<30}")
-                print(f"PLACA : {'0KM' if not veiculo['placa'] else veiculo['placa']:<7} VALOR (R$): {veiculo['valor']:<21.2f} CPF: {'N/D' if not veiculo['cpf_compr'] else veiculo['cpf_compr']:<20} COR: {veiculo['cor']}")
-                print(f"PORTAS: {'N/D' if not veiculo['portas'] else veiculo['portas']:<7} COMBUSTIVEL: {veiculo['combustivel']:<20} POTENCIA: {veiculo['potencia']:<15} STATUS: {'Vendido' if veiculo['vendido'] else 'ESTOQUE'}\n")
+            if status == "estoque":
+                Utils.print_formatado(f"LISTANDO TODOS OS VEICULOS EM ESTOQUE DA CATEGORIA: {tipo}")
+                total_estoque = 0
+                for veiculo in lista:
+                    if not veiculo['vendido']:
+                        total_estoque += veiculo['valor']
+                        Utils.print_formatado("-")
+                        print(f"TIPO  : {veiculo['tipo']:<7} CHASSI: {veiculo['chassi']:<25} DATA FAB: {veiculo['data_fab']:<15} MODELO: {veiculo['modelo']:<30}")
+                        print(f"PLACA : {'0KM' if not veiculo['placa'] else veiculo['placa']:<7} VALOR (R$): {veiculo['valor']:<21.2f} CPF: {'N/D' if not veiculo['cpf_compr'] else veiculo['cpf_compr']:<20} COR: {veiculo['cor']}")
+                        print(f"PORTAS: {'N/D' if not veiculo['portas'] else veiculo['portas']:<7} COMBUSTIVEL: {veiculo['combustivel']:<20} POTENCIA: {veiculo['potencia']:<15} STATUS: {'Vendido' if veiculo['vendido'] else 'ESTOQUE'}\n")
+                    
+                
+                if total_estoque > 0:
+                    print(f"TOTAL EM ESTOQUE NA CATEGORIA {tipo}: R$ {total_estoque:.2f}")
+                else:
+                    print(f"NÃO HÁ ITENS DA CATEGORIA {tipo} NO ESTOQUE. VOCÊ PRECISA FABRICAR")
+            else:
+                Utils.print_formatado(f"LISTANDO TODOS OS VEICULOS VENDIDOS DA CATEGORIA: {tipo}")
+                total_vendidos = 0
+                for veiculo in lista:
+                    if veiculo['vendido']:
+                        total_vendidos += veiculo['valor']
+                        Utils.print_formatado("-")
+                        print(f"TIPO  : {veiculo['tipo']:<7} CHASSI: {veiculo['chassi']:<25} DATA FAB: {veiculo['data_fab']:<15} MODELO: {veiculo['modelo']:<30}")
+                        print(f"PLACA : {'0KM' if not veiculo['placa'] else veiculo['placa']:<7} VALOR (R$): {veiculo['valor']:<21.2f} CPF: {'N/D' if not veiculo['cpf_compr'] else veiculo['cpf_compr']:<20} COR: {veiculo['cor']}")
+                        print(f"PORTAS: {'N/D' if not veiculo['portas'] else veiculo['portas']:<7} COMBUSTIVEL: {veiculo['combustivel']:<20} POTENCIA: {veiculo['potencia']:<15} STATUS: {'Vendido' if veiculo['vendido'] else 'ESTOQUE'}\n")
+                
+                if total_vendidos > 0:
+                    print(f"TOTAL FATURADO NA CATEGORIA {tipo}: R$ {total_vendidos:.2f}")
+                else:
+                    print(f"NÃO EXISTEM ITENS DA CATEGORIA {tipo} VENDIDOS")
+
         else:
             print(f"VEÍCULO TIPO: {tipo} NÃO ENCONTRADO")
     
