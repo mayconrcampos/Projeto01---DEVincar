@@ -337,7 +337,7 @@ class MotoTriciclo(Veiculo):
             print(f"MOTO NÃO PERMITE MODIFICAR PLACA DE OUTROS TIPOS DE VEICULO")
 
 
-MOTO = MotoTriciclo()
-#MOTO.vender_veiculo()
-MOTO.listar_infos()
+#MOTO = MotoTriciclo()
+##MOTO.vender_veiculo()
+#MOTO.listar_infos()
 #MOTO.alterar_infos()

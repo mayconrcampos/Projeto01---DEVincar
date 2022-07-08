@@ -205,7 +205,7 @@ class Camionete(Veiculo):
                     break
 
                 elif potencia == "3":
-                    self.potencia = "4.0 250CV"
+                    self.potencia = "3.0 190CV"
                     print(f"POTÊNCIA SELECIONADA: {self.potencia}")
                     break
 
@@ -341,7 +341,7 @@ class Camionete(Veiculo):
             print(f"CAMIONETE NÃO PERMITE MODIFICAR PLACA DE OUTROS TIPOS DE VEICULO")
     
 
-caminhoneta = Camionete()
-#caminhoneta.vender_veiculo()
-#caminhoneta.listar_infos()
-caminhoneta.alterar_infos()
+#caminhoneta = Camionete()
+##caminhoneta.vender_veiculo()
+##caminhoneta.listar_infos()
+#caminhoneta.alterar_infos()

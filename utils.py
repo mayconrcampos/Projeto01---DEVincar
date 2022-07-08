@@ -1,6 +1,12 @@
 from datetime import datetime
 from os import stat
 from random import randint
+from tracemalloc import Statistic
+from faker import Faker
+from faker_vehicle import VehicleProvider
+
+fake = Faker(["pt-BR", "pt-BR", "pt-BR", "pt-BR"])
+fake.add_provider(VehicleProvider)
 
 class Utils:
 
@@ -36,6 +42,14 @@ class Utils:
 
         except ValueError:
             return False
+    
+    @staticmethod
+    def gera_data_HOJE():
+        ano = datetime.today().year 
+        mes =  f"0{datetime.today().month}" if datetime.today().month < 10 else datetime.today().month
+        dia =  f"0{datetime.today().day}" if datetime.today().day < 10 else datetime.today().day
+
+        return f"{dia}/{mes}/{ano}"
     
     @staticmethod
     def valida_placa(placa: str):
@@ -273,9 +287,66 @@ class Utils:
     def print_AMARELO(cor: str = "AMARELO"):
         print(cor.rjust(20, ' ') + '\x1b[6;33;43m'+ "         " + '\x1b[0m'.rjust(20, " "))
 
+    @staticmethod
+    def print_formatado(texto: str):
+        print(texto.center(100, "-"))
 
 
-Utils.print_BRANCO("BRANCO")
+#   GERADORES ALEATÓRIOS PARA VEICULOS
+#   MODELO, VALOR, COMBUSTIVEL, POTENCIA, COR
+
+    
+    @staticmethod
+    def gerador_de_modelo():
+        return fake.vehicle_make_model()
+    
+    @staticmethod
+    def gerador_de_valor():
+        return randint(19900, 299000)
+    
+    @staticmethod
+    def setCombustivel_CARRO():
+        combustivel = ["Gasolina", "Flex"]
+
+        return combustivel[randint(0, 1)] 
+
+    @staticmethod
+    def setCombustivel_MOTO():
+        combustivel = "Gasolina"
+        return combustivel
+
+    @staticmethod
+    def setCombustivel_CAMIONETE():
+        combustivel = ["Gasolina", "Diesel"]
+
+        return combustivel[randint(0, 1)]
+    
+    @staticmethod
+    def setPotencia_CARRO():
+        potencia = ["1.0 65CV", "1.6 100CV", "2.0 150CV"]
+
+        return potencia[randint(0, 2)]
+    
+    @staticmethod
+    def setPotencia_MOTO():
+        potencia = ["150cc 14,2CV", "250cc 22,4CV", "650cc 88,4CV"]
+
+        return potencia[randint(0, 2)]
+    
+    @staticmethod
+    def setPotencia_CAMIONETE():
+        potencia = ["2.5 130CV", "3.0 190CV", "2.0 150CV"]
+
+        return potencia[randint(0, 2)]
+
+    @staticmethod
+    def gera_COR():
+        return fake.safe_color_name()
+
+
+#print(Utils.gerador_de_valor())
+#print(Utils.gera_data_HOJE())
+#Utils.print_BRANCO("BRANCO")
 #Utils.print_PRETO("PRETO")
 #Utils.print_ROXO("ROXO ")
 #Utils.print_AMARELO("AMARELO ")
