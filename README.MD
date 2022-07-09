@@ -2,7 +2,7 @@
 
 <h2>Nome do Projeto: DEVinCAR Project</h2>
 
-<p>Neste primeiro projeto do segundo módulo devemos construir um sistema que simula uma MONTADORA e REVENDA de Carros. Neste sistema deverá conter 3 tipos de carros:</p>
+<p>Neste primeiro projeto do segundo módulo devemos construir um sistema que simula uma MONTADORA e REVENDA de Carros. Neste sistema deverá conter 3 tipos de VEÍCULOS:</p>
 
 <ul>
     <li>Carros</li>
