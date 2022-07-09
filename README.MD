@@ -41,7 +41,11 @@
 
 <h3>Descrição de como ficou o projeto e seu fluxo de trabalho</h3>
 
-<p>Ele é iniciado pelo main.py que gera um menu com 8 opções:</p>
+<p>Ele é iniciado pelo main.py que gera um menu com 8 opções: Para executar, é necessário entrar no ambiente virtual e instalar as bibliotecas contidas em requirements.txt</p>
+
+<p><strong>$ source ./venv/bin/activate</strong></p>
+<p><strong>$ pip install -r requirements.txt</strong></p>
+<p><strong>$ python main.py</strong></p>
 
 <hr> 
 
