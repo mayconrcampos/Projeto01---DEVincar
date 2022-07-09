@@ -33,6 +33,7 @@
     <li>
         <li>Biblioteca Faker_vehicle - Gerando nomes de automóveis de forma aleatória</li>
         <li>Biblioteca num2words - Escrevendo valores monetários por extenso</li>
+        <li>Biblioteca termcolor - Escrevendo colorido no terminal</li>
         <li>Entre outras bibliotecas bultins do Python: os, random, datetime, etc...</li>
     </li>
     <li>Versionamento com GIT</li>
