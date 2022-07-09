@@ -305,3 +305,4 @@ while True:
                 print("Opção inválida!")
     else:
         print("Caracter inválido! Digite números inteiros para navegar no Menu.")
+        

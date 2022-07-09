@@ -1,11 +1,7 @@
-
-from ast import Break
 from tinydb import TinyDB, Query
 from utils import Utils
 
-
 carros = TinyDB("carros.json")
-
 
 class Database:
 
@@ -313,10 +309,3 @@ class Database:
         else:
             carros.update({"placa": placa, "cpf_compr": cpf, "vendido": True}, search.chassi == chassi)
         
-
-
-
-#print(Database.busca_por_chassi("OM4 NPKXDN ZE XDMABT", "Carro"))
-#Database.listar_infos()
-#print(Database.existe_PLACA("BMM8S88"))
-#print(Database.busca_por_PLACA("BMM8S88", "Carro"))

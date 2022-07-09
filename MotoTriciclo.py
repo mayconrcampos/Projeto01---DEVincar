@@ -216,4 +216,3 @@ class MotoTriciclo(Veiculo):
         else:
             print("NÃO EXISTE NENHUMA MOTO/TRICICLO VENDIDA")
         
-

@@ -21,3 +21,4 @@ class Veiculo(ABC):
     @abstractmethod
     def alterar_infos(self):
         pass
+    

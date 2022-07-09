@@ -1,4 +1,3 @@
-from operator import truediv
 from Veiculo import Veiculo
 from utils import Utils
 from Database import Database
@@ -233,6 +232,3 @@ class Carro(Veiculo):
             Database.alterar_VEICULO(placa=self.placa, cor=self.cor)
         else:
             print("NÃO EXISTE NENHUM CARRO VENDIDO")
-
-        
-        

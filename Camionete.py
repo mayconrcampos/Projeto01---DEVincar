@@ -1,5 +1,3 @@
-from ctypes import util
-from random import randint
 from Veiculo import Veiculo
 from utils import Utils
 from Database import Database
@@ -237,9 +235,3 @@ class Camionete(Veiculo):
             Database.alterar_VEICULO(placa=self.placa, cor=self.cor)
         else:
             print(f"NÃO EXISTE NENHUMA CAMIONETE VENDIDA")
-    
-
-#caminhoneta = Camionete()
-##caminhoneta.vender_veiculo()
-##caminhoneta.listar_infos()
-#caminhoneta.alterar_infos()

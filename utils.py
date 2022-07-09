@@ -435,18 +435,3 @@ class Utils:
             result = text1 + text2
 
         print(result)
-
-        
-#Utils.valor_por_extenso("1500.99")
-#Utils.valor_por_extenso("15045.35")
-#Utils.valor_por_extenso("100000.99")
-#Utils.valor_por_extenso("850,87")
-#Utils.valor_por_extenso("558,85")
-#Utils.valor_por_extenso("80,12")
-#Utils.limpa_tela()
-#print(Utils.gerador_de_valor())
-#print(Utils.gera_data_HOJE())
-#Utils.print_BRANCO("BRANCO")
-#Utils.print_PRETO("PRETO")
-#Utils.print_ROXO("ROXO ")
-#Utils.print_AMARELO("AMARELO ")
