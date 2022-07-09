@@ -139,7 +139,7 @@ while True:
                             break
 
                         elif opcao == "3":
-                            camionete.listar_infos("Camionete")
+                            camionete.listar_infos("estoque")
                             break
 
                         elif opcao == "4":
@@ -202,7 +202,7 @@ while True:
                         elif opcao == "2":
                             moto.listar_infos("vendido")
                             break
-                        
+
                         elif opcao == "3":
                             pass
                         elif opcao == "4":
@@ -275,6 +275,7 @@ while True:
                             break
 
                         elif opcao == "2":
+                            moto.alterar_infos()
                             break
 
                         elif opcao == "3":

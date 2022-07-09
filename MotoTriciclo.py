@@ -1,6 +1,5 @@
 from Veiculo import Veiculo
 from utils import Utils
-from os import system
 from Database import Database
 
 class MotoTriciclo(Veiculo):
@@ -16,12 +15,13 @@ class MotoTriciclo(Veiculo):
         self.data_fab = Utils.gera_data_HOJE()
         self.modelo = Utils.gerador_de_modelo()
         self.placa = None
-        self.valor = Utils.gerador_de_valor()
+        self.potencia = Utils.setPotencia_MOTO()
+        self.valor = Utils.gerador_de_valor_MOTO(self.potencia)
         self.cpf_compr = None
         self.cor = Utils.gera_COR()
         self.num_rodas = Utils.setNum_RODAS_MOTO_TRICICLO()
         self.combustivel = Utils.setCombustivel_MOTO()
-        self.potencia = Utils.setPotencia_MOTO()
+        
 
         motoca = {
             "tipo": "Moto/Triciclo",
@@ -62,7 +62,7 @@ class MotoTriciclo(Veiculo):
         
         while True:
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_placa(placa):
                 print("DIGITE UMA PLACA CORRETA")
@@ -80,7 +80,7 @@ class MotoTriciclo(Veiculo):
         
         while True:
             cpf_compr = input("DIGITE O CPF DO COMPRADOR: ")
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_cpf(cpf_completo=cpf_compr):
                 print("DIGITE UM CPF VÁLIDO")
@@ -89,7 +89,7 @@ class MotoTriciclo(Veiculo):
 
                 while True:
                     gera_cpf = input("AO INVÉS DE DIGITAR, QUER GERAR UM CPF VÁLIDO?\n1. Gerar CPF\n2. Não! Quero Inserir meu CPF\n: ")
-                    system("clear")
+                    Utils.clear_tela()
 
                     if gera_cpf.isnumeric():
                         match gera_cpf:
@@ -127,9 +127,9 @@ class MotoTriciclo(Veiculo):
         
         
         while True:
-            Database.listar_VEICULOS("Moto/Triciclo")
-            placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
-            system("clear")
+            self.listar_infos("vendido")
+            placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL:\n --> COPIE A PLACA DESEJADA DA LISTA E COLE AQUI --> ").upper()
+            Utils.clear_tela()
 
             if not Utils.valida_placa(placa):
                 print("DIGITE UMA PLACA CORRETA")
@@ -160,7 +160,7 @@ class MotoTriciclo(Veiculo):
             print("5. INDECISO? Você pode Sortear a COR")
 
             opcao_cor = input("Opção: ")
-            system("clear")
+            Utils.clear_tela()
 
             if opcao_cor.isnumeric():
                 match opcao_cor:
@@ -181,7 +181,7 @@ class MotoTriciclo(Veiculo):
 
                         while True:
                             sortear = input("Tecle ENTER pra sortear: ")
-                            system("clear")
+                            Utils.clear_tela()
 
                             if not sortear:
                                 self.cor = Utils.sortear_cor()
@@ -200,10 +200,11 @@ class MotoTriciclo(Veiculo):
             
             if self.cor:
                 break
+
         
         while True:
             valor = input("DIGITE O VALOR: R$: ")
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_valor(valor):
                 print("DIGITE UM VALOR MONETÁRIO VÁLIDO")
@@ -212,18 +213,11 @@ class MotoTriciclo(Veiculo):
                 print("PODE SER NÚMERO COM VIRGULA PRA CASA DECIMAL (100,00)")
                 continue
             else:
-                valor = Utils.valida_valor(valor)
+                self.valor = Utils.valida_valor(valor)
                 print("VALOR INSERIDO COM SUCESSO")
                 break
         
         
-        if Database.busca_por_PLACA(placa=self.placa, tipo="Moto/Triciclo"):
-            Database.alterar_VEICULO(placa=self.placa, cor=self.cor, valor=valor)
-        else:
-            print(f"MOTO NÃO PERMITE MODIFICAR PLACA DE OUTROS TIPOS DE VEICULO")
+        Database.alterar_VEICULO(placa=self.placa, cor=self.cor, valor=self.valor)
+        
 
-
-#MOTO = MotoTriciclo()
-##MOTO.vender_veiculo()
-#MOTO.listar_infos()
-#MOTO.alterar_infos()

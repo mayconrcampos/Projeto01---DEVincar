@@ -1,10 +1,6 @@
-from datetime import datetime
 from Veiculo import Veiculo
 from utils import Utils
-from os import system
 from Database import Database
-
-
 
 class Carro(Veiculo):
     def __init__(self) -> None:
@@ -19,12 +15,13 @@ class Carro(Veiculo):
         self.data_fab = Utils.gera_data_HOJE()
         self.modelo = Utils.gerador_de_modelo()
         self.placa = None
-        self.valor = Utils.gerador_de_valor()
+        self.potencia = Utils.setPotencia_CARRO()
+        self.valor = Utils.gerador_de_valor_CARRO(self.potencia)
         self.cpf_compr = None
         self.cor = Utils.gera_COR()
         self.portas = None
         self.combustivel = Utils.setCombustivel_CARRO()
-        self.potencia = Utils.setPotencia_CARRO()
+        
 
 
         carrodicio = {
@@ -65,7 +62,7 @@ class Carro(Veiculo):
 
         while True:
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_placa(placa):
                 print("DIGITE UMA PLACA CORRETA")
@@ -92,7 +89,7 @@ class Carro(Veiculo):
 
                 while True:
                     gera_cpf = input("AO INVÉS DE DIGITAR, QUER GERAR UM CPF VÁLIDO?\n1. Gerar CPF\n2. Inserir meu CPF\n: ")
-                    system("clear")
+                    Utils.clear_tela()
 
                     if gera_cpf.isnumeric():
                         match gera_cpf:
@@ -122,7 +119,7 @@ class Carro(Veiculo):
             
         while True:
             portas = input("NÚMERO DE PORTAS: ")
-            system("clear")
+            Utils.clear_tela()
 
             if Utils.valida_portas(portas):
                 self.portas = Utils.valida_portas(portas)
@@ -157,9 +154,12 @@ class Carro(Veiculo):
                 print("PROCURANDO CARRO NA BASE DE DADOS".center(50, "-"))
 
                 if Database.existe_PLACA(placa=placa):
-                    Database.busca_por_PLACA(placa=placa, tipo="Carro")
-                    print("PLACA ENCONTRADA")
-                    break
+                    if Database.busca_por_PLACA(placa=placa, tipo="Carro"):
+                        self.placa = placa
+                        break
+                    else:
+                        print(f"PLACA {placa} PERTENCE A OUTRA CATEGORIA DE VEÍCULO.")
+                        continue
                 else:
                     print("PLACA NÃO ENCONTRADA")
         
@@ -194,7 +194,7 @@ class Carro(Veiculo):
 
                         while True:
                             sortear = input("Tecle ENTER pra sortear: ")
-                            system("clear")
+                            Utils.clear_tela()
 
                             if not sortear:
                                 self.cor = Utils.sortear_cor()
@@ -216,7 +216,7 @@ class Carro(Veiculo):
         
         while True:
             valor = input("DIGITE O VALOR: R$: ")
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_valor(valor):
                 print("DIGITE UM VALOR MONETÁRIO VÁLIDO")
@@ -230,17 +230,7 @@ class Carro(Veiculo):
                 break
         
         
-        Database.alterar_VEICULO(placa=placa, cor=self.cor, valor=valor)
+        Database.alterar_VEICULO(placa=self.placa, cor=self.cor, valor=valor)
 
         
         
-        
-#c = Carro()
-#c.alterar_infos()
-
-
-
-
-
-
-

@@ -1,5 +1,6 @@
 from datetime import datetime
 from random import randint
+from tracemalloc import Statistic
 from faker import Faker
 from faker_vehicle import VehicleProvider
 from os import system, name
@@ -289,7 +290,8 @@ class Utils:
 
     @staticmethod
     def print_formatado(texto: str):
-        print(texto.center(120, "-"))
+        print(texto.center(150, "-"))
+    
 
 
 #   GERADORES ALEATÓRIOS PARA VEICULOS
@@ -301,9 +303,43 @@ class Utils:
         return fake.vehicle_make_model()
     
     @staticmethod
-    def gerador_de_valor():
-        return randint(19900, 299000)
+    def gerador_de_valor_CARRO(potencia: str):
+        power = ["1.0 65CV", "1.6 100CV", "2.0 150CV", "3.0 240CV", "4.1 330CV"]
+        if power[0] == potencia:
+            return randint(29000, 89000)
+        elif power[1] == potencia:
+            return randint(89100, 129000)
+        elif power[2] == potencia:
+            return randint(129100, 179000)
+        elif power[3] == potencia:
+            return randint(179100, 399000)
+        else:
+            return randint(399100, 1099000)
+        
     
+    @staticmethod
+    def gerador_de_valor_MOTO(potencia: str):
+        power = ["150cc 14,2CV", "250cc 22,4CV", "650cc 88,4CV", "1000cc 141CV"]
+        if power[0] == potencia:
+            return randint(3000, 9999)
+        elif power[1] == potencia:
+            return randint(10000, 19999)
+        elif power[2] == potencia:
+            return randint(20000, 39000)
+        else:
+            return randint(40000, 79999)
+        
+    
+    @staticmethod
+    def gerador_de_valor_CAMIONETE(potencia: str):
+        power = ["2.5 130CV", "3.0 190CV", "2.0 150CV"]
+        if power[0] == potencia:
+            return randint(39000, 109999)
+        elif power[1] == potencia:
+            return randint(110000, 219999)
+        else:
+            return randint(220000, 999000)
+
     @staticmethod
     def setCombustivel_CARRO():
         combustivel = ["Gasolina", "Flex"]
@@ -323,21 +359,31 @@ class Utils:
     
     @staticmethod
     def setPotencia_CARRO():
-        potencia = ["1.0 65CV", "1.6 100CV", "2.0 150CV"]
+        potencia = ["1.0 65CV", "1.6 100CV", "2.0 150CV", "3.0 240CV", "4.1 330CV"]
 
-        return potencia[randint(0, 2)]
+        return potencia[randint(0, 4)]
     
     @staticmethod
     def setPotencia_MOTO():
-        potencia = ["150cc 14,2CV", "250cc 22,4CV", "650cc 88,4CV"]
+        potencia = ["150cc 14,2CV", "250cc 22,4CV", "650cc 88,4CV", "1000cc 141CV"]
 
-        return potencia[randint(0, 2)]
+        return potencia[randint(0, 3)]
     
     @staticmethod
     def setPotencia_CAMIONETE():
         potencia = ["2.5 130CV", "3.0 190CV", "2.0 150CV"]
 
         return potencia[randint(0, 2)]
+    
+    @staticmethod
+    def setCamionete_CACAMBA_LITROS():
+        litros = ["500 Litros", "750 Litros", "1000 Litros", "1500 Litros"]
+
+        return litros[randint(0, 3)]
+    
+    @staticmethod
+    def setPortas_CAMIONETE():
+        return randint(2, 3)
     
     @staticmethod
     def setNum_RODAS_MOTO_TRICICLO():
@@ -395,12 +441,12 @@ class Utils:
         print(result)
 
         
-Utils.valor_por_extenso("1500.99")
-Utils.valor_por_extenso("15045.35")
-Utils.valor_por_extenso("100000.99")
-Utils.valor_por_extenso("850,87")
-Utils.valor_por_extenso("558,85")
-Utils.valor_por_extenso("80,12")
+#Utils.valor_por_extenso("1500.99")
+#Utils.valor_por_extenso("15045.35")
+#Utils.valor_por_extenso("100000.99")
+#Utils.valor_por_extenso("850,87")
+#Utils.valor_por_extenso("558,85")
+#Utils.valor_por_extenso("80,12")
 #Utils.limpa_tela()
 #print(Utils.gerador_de_valor())
 #print(Utils.gera_data_HOJE())

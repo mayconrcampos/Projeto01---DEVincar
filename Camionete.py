@@ -2,17 +2,49 @@ from ctypes import util
 from random import randint
 from Veiculo import Veiculo
 from utils import Utils
-from os import system
 from Database import Database
 
 class Camionete(Veiculo):
     def __init__(self) -> None:
-        #super().__init__(self.chassi, self.data_fab, self.nome, self.placa, self.valor, self.cpf_compr, self.cor)
+        #super().__init__(self.chassi, self.data_fab, self.modelo, self.placa, self.valor, self.cpf_compr, self.cor)
 
         self.portas = None
         self.cacamba = None
         self.potencia = None
         self.combustivel = None
+    
+    def fabricar_veiculo(self):
+        self.chassi = Utils.gera_chassi()
+        self.data_fab = Utils.gera_data_HOJE()
+        self.modelo = Utils.gerador_de_modelo()
+        self.placa = None
+        self.potencia = Utils.setPotencia_CAMIONETE()
+        self.valor = Utils.gerador_de_valor_CAMIONETE(self.potencia)
+        self.cpf_compr = None
+        self.cor = "ROXO"
+        self.portas = Utils.setPortas_CAMIONETE()
+        self.cacamba = Utils.setCamionete_CACAMBA_LITROS()
+        self.combustivel = Utils.setCombustivel_CAMIONETE()
+        
+
+        caminhonete = {
+            "tipo": "Camionete",
+            "chassi": self.chassi,
+            "data_fab": self.data_fab,
+            "modelo": self.modelo,
+            "placa": self.placa,
+            "valor": self.valor,
+            "cpf_compr": self.cpf_compr,
+            "cor": self.cor,
+            "portas": self.portas,
+            "cacamba": self.cacamba,
+            "combustivel": self.combustivel,
+            "potencia": self.potencia,
+            "vendido": False         
+        }
+
+        Database.adicionar_veiculo(veiculo=caminhonete)
+
 
     def vender_veiculo(self):
         print("VENDA DE CAMIONETE".center(100, "-"))
@@ -26,7 +58,7 @@ class Camionete(Veiculo):
 
         while True:
             data_fab = input("DATA FABRICAÇÃO: 00-00-0000 : ")
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_data(data=data_fab):
                 print("DATA DEVE SER VÁLIDA DE VERDADE")
@@ -40,7 +72,7 @@ class Camionete(Veiculo):
         
         while True:
             modelo = input("MODELO: ").upper()
-            system("clear")
+            Utils.clear_tela()
 
             if not modelo:
                 print("VOCÊ DEVE INSERIR O MODELO")
@@ -52,7 +84,7 @@ class Camionete(Veiculo):
         
         while True:
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_placa(placa):
                 print("DIGITE UMA PLACA CORRETA")
@@ -69,7 +101,7 @@ class Camionete(Veiculo):
         
         while True:
             valor = input("DIGITE O VALOR: R$: ")
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_valor(valor):
                 print("DIGITE UM VALOR MONETÁRIO VÁLIDO")
@@ -84,7 +116,7 @@ class Camionete(Veiculo):
         
         while True:
             cpf_compr = input("DIGITE O CPF DO COMPRADOR: ")
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_cpf(cpf_completo=cpf_compr):
                 print("DIGITE UM CPF VÁLIDO")
@@ -93,7 +125,7 @@ class Camionete(Veiculo):
 
                 while True:
                     gera_cpf = input("AO INVÉS DE DIGITAR, QUER GERAR UM CPF VÁLIDO?\n1. Gerar CPF\n2. Inserir meu CPF\n: ")
-                    system("clear")
+                    Utils.clear_tela()
 
                     if gera_cpf.isnumeric():
                         match gera_cpf:
@@ -130,7 +162,7 @@ class Camionete(Veiculo):
             print("2. QUER TENTAR ESCOLHER OUTRA COR? FIQUE A VONTADE.")
 
             opcao_cor = input("Opção: ")
-            system("clear")
+            Utils.clear_tela()
 
             if opcao_cor.isnumeric():
                 match opcao_cor:
@@ -152,7 +184,7 @@ class Camionete(Veiculo):
 
         while True:
             portas = input("NÚMERO DE PORTAS: ")
-            system("clear")
+            Utils.clear_tela()
 
             if Utils.valida_portas(portas):
                 self.portas = Utils.valida_portas(portas)
@@ -168,7 +200,7 @@ class Camionete(Veiculo):
             print("1. GASOLINA\n2. DIESEL")
 
             combustivel = input("Opção: ")
-            system("clear")
+            Utils.clear_tela()
 
             if combustivel.isnumeric():
                 if combustivel == "1":
@@ -191,7 +223,7 @@ class Camionete(Veiculo):
             print("1. 2.5 130CV\n2. 3.0 190CV\n3. 4.0 250CV")
 
             potencia = input("Opção: ")
-            system("clear")
+            Utils.clear_tela()
 
             if potencia.isnumeric():
                 if potencia == "1":
@@ -261,8 +293,8 @@ class Camionete(Veiculo):
 
         Database.adicionar_veiculo(veiculo=caminhonete)
 
-    def listar_infos(self):
-        Database.listar_VEICULOS("Camionete")
+    def listar_infos(self, status: str):
+        Database.listar_VEICULOS("Camionete", status=status)
 
     def alterar_infos(self):
         print("LISTANDO CAMIONETES VENDIDOS".center(50, "-"))
@@ -271,7 +303,7 @@ class Camionete(Veiculo):
         while True:
             Database.listar_VEICULOS("Camionete")
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_placa(placa):
                 print("DIGITE UMA PLACA CORRETA")
@@ -299,7 +331,7 @@ class Camionete(Veiculo):
             print("2. Quer outra cor? QUER TENTAR TROCAR?")
 
             opcao_cor = input("Opção: ")
-            system("clear")
+            Utils.clear_tela()
 
             if opcao_cor.isnumeric():
                 match opcao_cor:
@@ -321,7 +353,7 @@ class Camionete(Veiculo):
         
         while True:
             valor = input("DIGITE O VALOR: R$: ")
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_valor(valor):
                 print("DIGITE UM VALOR MONETÁRIO VÁLIDO")
