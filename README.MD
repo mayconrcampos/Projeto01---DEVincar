@@ -69,6 +69,8 @@
         </li>
         <li>1.4 Retornar ao menu principal</li>
     </li>
+</ul>
+<ul>
     <li>2. Listar Veículos em estoque</li>
     <li>
         <li>ESCOLHA A CATEGORIA PARA LISTAR O ESTOQUE</li>
@@ -77,6 +79,8 @@
         <li>2.3 Camionete</li>
         <li>2.4 Retornar ao menu principal</li>
     </li>
+</ul>
+<ul>
     <li>3. Vender veículo</li>
     <li>
         <li>ESCOLHA A CATEGORIA</li>
@@ -85,6 +89,8 @@
         <li>3.3 Camionete</li>
         <li>3.4 Retornar ao menu principal</li>
     </li>
+</ul>
+<ul>
     <li>4. Listar Veículos vendidos</li>
     <li>
         <li>ESCOLHA A CATEGORIA PARA LISTAR VEÍCULOS VENDIDOS</li>
@@ -93,16 +99,22 @@
         <li>4.3 Camionete</li>
         <li>4.4 Retornar ao menu principal</li>
     </li>
+</ul>
+<ul>
     <li>5. Visualizar veículo mais caro</li>
     <li>
         <li>5.1 Em Estoque</li>
         <li>5.2 Vendidos</li>
     </li>
+</ul>
+<ul>
     <li>6. Visualizar veículo mais barato</li>
     <li>
         <li>6.1 Em Estoque</li>
         <li>6.2 Vendidos</li>
     </li>
+</ul>
+<ul>
     <li>7. Alterar Veículo Comprado</li>
     <li>
         <li>SELECIONE A CATEGORIA</li>
