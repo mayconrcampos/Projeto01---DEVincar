@@ -332,7 +332,7 @@ class Utils:
     
     @staticmethod
     def gerador_de_valor_CAMIONETE(potencia: str):
-        power = ["2.5 130CV", "3.0 190CV", "2.0 150CV"]
+        power = ["2.0 150CV", "2.5 130CV", "3.0 190CV"]
         if power[0] == potencia:
             return randint(39000, 109999)
         elif power[1] == potencia:
@@ -381,9 +381,6 @@ class Utils:
 
         return litros[randint(0, 3)]
     
-    @staticmethod
-    def setPortas_CAMIONETE():
-        return randint(2, 3)
     
     @staticmethod
     def setNum_RODAS_MOTO_TRICICLO():

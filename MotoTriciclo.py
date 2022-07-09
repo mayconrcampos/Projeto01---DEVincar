@@ -128,7 +128,7 @@ class MotoTriciclo(Veiculo):
         
         while True:
             self.listar_infos("vendido")
-            placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL:\n --> COPIE A PLACA DESEJADA DA LISTA E COLE AQUI --> ").upper()
+            placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL:\n --> COPIE A PLACA DESEJADA DA LISTA E COLE AQUI --> ").upper().strip()
             Utils.clear_tela()
 
             if not Utils.valida_placa(placa):
@@ -202,22 +202,7 @@ class MotoTriciclo(Veiculo):
                 break
 
         
-        while True:
-            valor = input("DIGITE O VALOR: R$: ")
-            Utils.clear_tela()
-
-            if not Utils.valida_valor(valor):
-                print("DIGITE UM VALOR MONETÁRIO VÁLIDO")
-                print("PODE SER NÚMERO INTEIRO (100)")
-                print("PODE SER NÚMERO COM PONTO PRA CASA DECIMAL (100.00)")
-                print("PODE SER NÚMERO COM VIRGULA PRA CASA DECIMAL (100,00)")
-                continue
-            else:
-                self.valor = Utils.valida_valor(valor)
-                print("VALOR INSERIDO COM SUCESSO")
-                break
         
-        
-        Database.alterar_VEICULO(placa=self.placa, cor=self.cor, valor=self.valor)
+        Database.alterar_VEICULO(placa=self.placa, cor=self.cor)
         
 

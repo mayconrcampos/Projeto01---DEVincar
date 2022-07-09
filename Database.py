@@ -37,7 +37,7 @@ class Database:
                                 mais_caro = VENDIDOS[_]
                             
                     Utils.print_formatado("VEICULO VENDIDO MAIS CARO")
-                    print(f"TIPO: {mais_caro['tipo']} MODELO: {mais_caro['modelo']} \nPOTENCIA: {mais_caro['potencia']} COMBUSTIVEL: {mais_caro['combustivel']} VALOR: \nR${mais_caro['valor']:.2f}\n")
+                    print(f"TIPO: {mais_caro['tipo']} MODELO: {mais_caro['modelo']} \nPOTENCIA: {mais_caro['potencia']} COMBUSTIVEL: {mais_caro['combustivel']} VALOR: R${mais_caro['valor']:.2f}\n")
                     Utils.print_formatado("-")
                     print("VALOR: R$ ", end=" --> ")
                     Utils.valor_por_extenso(str(mais_caro['valor']))
@@ -58,7 +58,7 @@ class Database:
                                 mais_barato = VENDIDOS[_]
     
                     Utils.print_formatado("VEICULO VENDIDO MAIS BARATO")
-                    print(f"TIPO: {mais_barato['tipo']} MODELO: {mais_barato['modelo']} \nPOTENCIA: {mais_barato['potencia']} COMBUSTIVEL: {mais_barato['combustivel']} VALOR: \nR${mais_barato['valor']:.2f}\n")
+                    print(f"TIPO: {mais_barato['tipo']} MODELO: {mais_barato['modelo']} \nPOTENCIA: {mais_barato['potencia']} COMBUSTIVEL: {mais_barato['combustivel']} VALOR: R${mais_barato['valor']:.2f}\n")
                     Utils.print_formatado("-")
                     print("VALOR: R$ ", end=" --> ")
                     Utils.valor_por_extenso(str(mais_barato['valor']))
@@ -82,7 +82,7 @@ class Database:
                                 break
     
                     Utils.print_formatado("VEICULO EM ESTOQUE MAIS CARO")
-                    print(f"TIPO: {mais_caro['tipo']} MODELO: {mais_caro['modelo']} \nPOTENCIA: {mais_caro['potencia']} COMBUSTIVEL: {mais_caro['combustivel']} VALOR: \nR${mais_caro['valor']:.2f}\n")
+                    print(f"TIPO: {mais_caro['tipo']} MODELO: {mais_caro['modelo']} \nPOTENCIA: {mais_caro['potencia']} COMBUSTIVEL: {mais_caro['combustivel']} VALOR: R${mais_caro['valor']:.2f}\n")
                     Utils.print_formatado("-")
                     print("VALOR: R$ ", end=" --> ")
                     Utils.valor_por_extenso(str(mais_caro['valor']))
@@ -103,7 +103,7 @@ class Database:
                                 mais_barato = ESTOQUE[_]
     
                     Utils.print_formatado("VEICULO EM ESTOQUE MAIS BARATO")
-                    print(f"TIPO: {mais_barato['tipo']} MODELO: {mais_barato['modelo']} \nPOTENCIA: {mais_barato['potencia']} COMBUSTIVEL: {mais_barato['combustivel']} VALOR: \nR${mais_barato['valor']:.2f}\n")
+                    print(f"TIPO: {mais_barato['tipo']} MODELO: {mais_barato['modelo']} \nPOTENCIA: {mais_barato['potencia']} COMBUSTIVEL: {mais_barato['combustivel']} VALOR: R${mais_barato['valor']:.2f}\n")
                     Utils.print_formatado("-")
                     print("VALOR: R$ ", end=" --> ")
                     Utils.valor_por_extenso(str(mais_barato['valor']))
@@ -142,9 +142,9 @@ class Database:
                             total_estoque += veiculo['valor']
                             unidades += 1
                             Utils.print_formatado("-")
-                            print(f"TIPO  : {veiculo['tipo']:<7} CHASSI: {veiculo['chassi']:<25} DATA FAB: {veiculo['data_fab']:<15} MODELO: {veiculo['modelo']:<30}")
-                            print(f"PLACA : {'0KM' if not veiculo['placa'] else veiculo['placa']:<7} VALOR (R$): {veiculo['valor']:<21.2f} CPF: {'N/D' if not veiculo['cpf_compr'] else veiculo['cpf_compr']:<20} COR: {veiculo['cor']}")
-                            print(f"Nº RODAS: {veiculo['num_rodas']:<7} COMBUSTIVEL: {veiculo['combustivel']:<20} POTENCIA: {veiculo['potencia']:<15} STATUS: {'Vendido' if veiculo['vendido'] else 'ESTOQUE'}\n")
+                            print(f"TIPO  : {veiculo['tipo']:<15} CHASSI: {veiculo['chassi']:<25} DATA FAB: {veiculo['data_fab']:<15} MODELO: {veiculo['modelo']:<30}")
+                            print(f"PLACA : {'0KM' if not veiculo['placa'] else veiculo['placa']:<15} VALOR (R$): {veiculo['valor']:<21.2f} CPF: {'N/D' if not veiculo['cpf_compr'] else veiculo['cpf_compr']:<20} COR: {veiculo['cor']}")
+                            print(f"Nº RODAS: {veiculo['num_rodas']:<13} COMBUSTIVEL: {veiculo['combustivel']:<20} POTENCIA: {veiculo['potencia']:<15} STATUS: {'Vendido' if veiculo['vendido'] else 'ESTOQUE'}\n")
 
                 else:
                     for veiculo in lista:
@@ -154,7 +154,7 @@ class Database:
                             Utils.print_formatado("-")
                             print(f"TIPO  : {veiculo['tipo']:<15} CHASSI: {veiculo['chassi']:<25} DATA FAB: {veiculo['data_fab']:<15} MODELO: {veiculo['modelo']:<30}")
                             print(f"PLACA : {'0KM' if not veiculo['placa'] else veiculo['placa']:<15} VALOR (R$): {veiculo['valor']:<21.2f} CPF: {'N/D' if not veiculo['cpf_compr'] else veiculo['cpf_compr']:<20} COR: {veiculo['cor']}")
-                            print(f"PORTAS: {veiculo['portas']:<15} COMBUSTIVEL: {veiculo['combustivel']:<20} POTENCIA: {veiculo['potencia']:<15} STATUS: {'Vendido' if veiculo['vendido'] else 'ESTOQUE'}\nCACAMBA: {veiculo['cacamba']}")
+                            print(f"PORTAS: {'N/D' if not veiculo['portas'] else veiculo['portas']:<15} COMBUSTIVEL: {veiculo['combustivel']:<20} POTENCIA: {veiculo['potencia']:<15} STATUS: {'Vendido' if veiculo['vendido'] else 'ESTOQUE'}\nCACAMBA: {veiculo['cacamba']}")
                     
                 
                 if total_estoque > 0:
@@ -190,11 +190,18 @@ class Database:
                             total_vendidos += veiculo['valor']
                             unidades += 1
                             Utils.print_formatado("-")
-                            print(f"TIPO  : {veiculo['tipo']:<7} CHASSI: {veiculo['chassi']:<25} DATA FAB: {veiculo['data_fab']:<15} MODELO: {veiculo['modelo']:<30}")
-                            print(f"PLACA : {'0KM' if not veiculo['placa'] else veiculo['placa']:<7} VALOR (R$): {veiculo['valor']:<21.2f} CPF: {'N/D' if not veiculo['cpf_compr'] else veiculo['cpf_compr']:<20} COR: {veiculo['cor']}")
-                            print(f"Nº RODAS: {veiculo['num_rodas']:<7} COMBUSTIVEL: {veiculo['combustivel']:<20} POTENCIA: {veiculo['potencia']:<15} STATUS: {'Vendido' if veiculo['vendido'] else 'ESTOQUE'}\n")
+                            print(f"TIPO  : {veiculo['tipo']:<15} CHASSI: {veiculo['chassi']:<25} DATA FAB: {veiculo['data_fab']:<15} MODELO: {veiculo['modelo']:<30}")
+                            print(f"PLACA : {'0KM' if not veiculo['placa'] else veiculo['placa']:<15} VALOR (R$): {veiculo['valor']:<21.2f} CPF: {'N/D' if not veiculo['cpf_compr'] else veiculo['cpf_compr']:<20} COR: {veiculo['cor']}")
+                            print(f"Nº RODAS: {veiculo['num_rodas']:<13} COMBUSTIVEL: {veiculo['combustivel']:<20} POTENCIA: {veiculo['potencia']:<15} STATUS: {'Vendido' if veiculo['vendido'] else 'ESTOQUE'}\n")
                 else:
-                    pass
+                    for veiculo in lista:
+                        if veiculo['vendido']:
+                            total_vendidos += veiculo['valor']
+                            unidades += 1
+                            Utils.print_formatado("-")
+                            print(f"TIPO  : {veiculo['tipo']:<15} CHASSI: {veiculo['chassi']:<25} DATA FAB: {veiculo['data_fab']:<15} MODELO: {veiculo['modelo']:<30}")
+                            print(f"PLACA : {'0KM' if not veiculo['placa'] else veiculo['placa']:<15} VALOR (R$): {veiculo['valor']:<21.2f} CPF: {'N/D' if not veiculo['cpf_compr'] else veiculo['cpf_compr']:<20} COR: {veiculo['cor']}")
+                            print(f"PORTAS: {'N/D' if not veiculo['portas'] else veiculo['portas']:<15} COMBUSTIVEL: {veiculo['combustivel']:<20} POTENCIA: {veiculo['potencia']:<15} STATUS: {'Vendido' if veiculo['vendido'] else 'ESTOQUE'}\nCACAMBA: {veiculo['cacamba']}")
                 
                 if total_vendidos > 0:
                     print(f"TOTAL FATURADO NA CATEGORIA {tipo}")
@@ -226,7 +233,7 @@ class Database:
     def busca_por_PLACA(placa: str, tipo: str):
         busca = Query()
                 
-        lista = carros.search(busca.placa == placa)
+        lista = carros.search(busca.placa == placa.strip())
     
         if lista:
             existe = False
@@ -249,7 +256,7 @@ class Database:
     def busca_por_chassi(chassi: str, tipo: str):
         busca = Query()
                 
-        lista = carros.search(busca.chassi == chassi)
+        lista = carros.search(busca.chassi == chassi.strip())
     
         if lista:
             existe = False
@@ -271,10 +278,10 @@ class Database:
 
     
     @staticmethod
-    def alterar_VEICULO(placa: str, cor: str, valor: float):
+    def alterar_VEICULO(placa: str, cor: str):
         search = Query()
 
-        carros.update({"cor": cor, "valor": valor}, search.placa == placa)
+        carros.update({"cor": cor}, search.placa == placa)
     
 
     @staticmethod

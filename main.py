@@ -173,7 +173,9 @@ while True:
                             break
 
                         elif opcao == "3":
-                            pass
+                            camionete.vender_veiculo()
+                            break
+
                         elif opcao == "4":
                             print("VOCÊ RETORNOU AO MENU PRINCIPAL")
                             break
@@ -204,7 +206,9 @@ while True:
                             break
 
                         elif opcao == "3":
-                            pass
+                            camionete.listar_infos("vendido")
+                            break
+
                         elif opcao == "4":
                             print("VOCÊ RETORNOU AO MENU PRINCIPAL")
                             break
@@ -279,7 +283,8 @@ while True:
                             break
 
                         elif opcao == "3":
-                            pass
+                            camionete.alterar_infos()
+                            break
 
                         elif opcao == "4":
                             print("RETORNANDO AO MENU PRINCIPAL")
