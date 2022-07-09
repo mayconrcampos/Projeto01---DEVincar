@@ -41,8 +41,8 @@
 
 <h3>Descrição de como ficou o projeto e seu fluxo de trabalho</h3>
 
-<li>Ele é iniciado pelo main.py que gera um menu com 8 opções:</li>
-<li>
+<p>Ele é iniciado pelo main.py que gera um menu com 8 opções:</p>
+<ul>
     <li>1. Fabricar Veículo</li>
     <li>
         <li>SELECIONE A QUANTIDADE</li>
@@ -112,7 +112,7 @@
         <li>7.4 Retornar ao menu principal</li>
     </li>
     <li>8. Sair do Sistema</li>
-</li>
+</ul>
 
 <h3>FLUXO DO PROGRAMA</h3>
 
