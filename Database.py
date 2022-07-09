@@ -1,7 +1,5 @@
 
-from email import utils
 from tinydb import TinyDB, Query
-
 from utils import Utils
 
 

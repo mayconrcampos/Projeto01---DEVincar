@@ -1,6 +1,5 @@
 from datetime import datetime
 from random import randint
-from tracemalloc import Statistic
 from faker import Faker
 from faker_vehicle import VehicleProvider
 from os import system, name
