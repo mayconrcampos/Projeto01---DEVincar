@@ -41,9 +41,12 @@ class MotoTriciclo(Veiculo):
     
     def vender_veiculo(self):
         Utils.print_formatado("VENDA DE MOTO/TRICICLO")
-        self.listar_infos("estoque")
 
-        while True:
+        existe = True
+        if not self.listar_infos("estoque"):
+            existe = False
+
+        while existe:
             chassi = input("DIGITE O CHASSI DO CARRO DESEJADO: (COPIE E COLE AQUI): ----> ").upper().strip()
 
             if chassi:
@@ -58,7 +61,7 @@ class MotoTriciclo(Veiculo):
 
 
         
-        while True:
+        while existe:
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
             Utils.clear_tela()
 
@@ -76,7 +79,7 @@ class MotoTriciclo(Veiculo):
                     break
         
         
-        while True:
+        while existe:
             cpf_compr = input("DIGITE O CPF DO COMPRADOR: ")
             Utils.clear_tela()
 
@@ -114,17 +117,25 @@ class MotoTriciclo(Veiculo):
                 print(f"CPF INSERIDO COM SUCESSO: {self.cpf_compr}")
                 break
 
-
-        Database.vender_VEICULO(chassi=chassi, placa=placa, cpf=self.cpf_compr)
+        if existe:
+            Database.vender_VEICULO(chassi=chassi, placa=placa, cpf=self.cpf_compr)
+        else:
+            print("NÃO EXISTEM MOTOS/TRICICLOS EM ESTOQUE")
 
     def listar_infos(self, status: str):
-        Database.listar_VEICULOS("Moto/Triciclo", status=status)
+        if Database.listar_VEICULOS("Moto/Triciclo", status=status):
+            return True
+        return False
 
     def alterar_infos(self):
         print("LISTANDO MOTOS / TRICICLOS VENDIDOS".center(50, "-"))
         
+        existe = False
+        if self.listar_infos("vendido"):
+            existe = True
+            Utils.clear_tela()
         
-        while True:
+        while existe:
             self.listar_infos("vendido")
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL:\n --> COPIE A PLACA DESEJADA DA LISTA E COLE AQUI --> ").upper().strip()
             Utils.clear_tela()
@@ -149,7 +160,7 @@ class MotoTriciclo(Veiculo):
                     print("PLACA NÃO ENCONTRADA")
         
 
-        while True:
+        while existe:
             print("ESCOLHA A COR".center(50, "-"))
             print("1. BRANCO")
             print("2. PRETO")
@@ -200,7 +211,9 @@ class MotoTriciclo(Veiculo):
                 break
 
         
-        
-        Database.alterar_VEICULO(placa=self.placa, cor=self.cor)
+        if existe:
+            Database.alterar_VEICULO(placa=self.placa, cor=self.cor)
+        else:
+            print("NÃO EXISTE NENHUMA MOTO/TRICICLO VENDIDA")
         
 

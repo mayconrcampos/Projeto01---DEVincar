@@ -46,15 +46,19 @@ class Camionete(Veiculo):
 
     def vender_veiculo(self):
         Utils.print_formatado("VENDA DE CAMIONETE")
-        self.listar_infos("estoque")
         
-        while True:
+        existe = True
+        if not self.listar_infos("estoque"):
+            existe = False
+        
+        while existe:
             chassi = input("DIGITE O CHASSI DO CARRO DESEJADO: (COPIE E COLE AQUI): ----> ").upper().strip()
 
             if chassi:
                 busca = Database.busca_por_chassi(chassi, "Camionete")
 
                 if busca:
+                    self.chassi = chassi
                     break
                 else:
                     print("CHASSI NÃO ENCONTRADO")
@@ -64,7 +68,7 @@ class Camionete(Veiculo):
 
        
         
-        while True:
+        while existe:
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
             Utils.clear_tela()
 
@@ -82,7 +86,7 @@ class Camionete(Veiculo):
                     break
         
         
-        while True:
+        while existe:
             cpf_compr = input("DIGITE O CPF DO COMPRADOR: ")
             Utils.clear_tela()
 
@@ -122,7 +126,7 @@ class Camionete(Veiculo):
 
        
 
-        while True:
+        while existe:
             Utils.print_formatado("PENSE BEM ANTES DE ESCOLHER A COR DA CAMIONETE")
    
             Utils.print_ROXO("1. SÓ TEM ROXO")
@@ -148,7 +152,7 @@ class Camionete(Veiculo):
             else:
                 print("Opção numérica inválida")
         
-        while True:
+        while existe:
             portas = input("NÚMERO DE PORTAS: ")
             Utils.clear_tela()
 
@@ -160,18 +164,25 @@ class Camionete(Veiculo):
                 print("OPÇÕES DISPONÍVEIS: 2 OU 4 PORTAS")
                 continue
   
-        
-        Database.vender_VEICULO(chassi=chassi, placa=self.placa, cpf=self.cpf_compr, portas=self.portas)
-
+        if existe:
+            Database.vender_VEICULO(chassi=self.chassi, placa=self.placa, cpf=self.cpf_compr, portas=self.portas)
+        else:
+            print("NÃO EXISTEM CAMIONETES NO ESTOQUE")
 
     def listar_infos(self, status: str):
-        Database.listar_VEICULOS("Camionete", status=status)
+        if Database.listar_VEICULOS("Camionete", status=status):
+            return True
+        return False
 
     def alterar_infos(self):
         print("LISTANDO CAMIONETES VENDIDAS".center(50, "-"))
+
+        existe = False
+        if self.listar_infos("vendido"):
+            existe = True
+            Utils.clear_tela()
         
-        
-        while True:
+        while existe:
             self.listar_infos("vendido")
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL:\n --> COPIE A PLACA DESEJADA DA LISTA E COLE AQUI --> ").upper().strip()
             Utils.clear_tela()
@@ -196,7 +207,7 @@ class Camionete(Veiculo):
                     print("PLACA NÃO ENCONTRADA")
         
 
-        while True:
+        while existe:
             Utils.print_formatado("PARECE QUE VOCÊ SE ARREPENDEU DE TER ESCOLHIDO ROXO, NÃO É VERDADE?")
             print("ENTÃO ESCOLHA OUTRA COR".center(50, "-"))
             Utils.print_ROXO("1. ROXO")
@@ -222,11 +233,10 @@ class Camionete(Veiculo):
                 print("Opção numérica inválida")
 
         
-        
-        if Database.busca_por_PLACA(placa=self.placa, tipo="Camionete"):
+        if existe:
             Database.alterar_VEICULO(placa=self.placa, cor=self.cor)
         else:
-            print(f"CAMIONETE NÃO PERMITE MODIFICAR PLACA DE OUTROS TIPOS DE VEICULO")
+            print(f"NÃO EXISTE NENHUMA CAMIONETE VENDIDA")
     
 
 #caminhoneta = Camionete()

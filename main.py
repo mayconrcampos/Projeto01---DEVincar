@@ -53,6 +53,7 @@ def menu_fabricacao(unidades: int):
     MENU PRINCIPAL
     """
 
+Utils.clear_tela()
 while True:
     Utils.print_formatado("SISTEMA GERENCIADOR DE FABRICAÇÃO E VENDA DE VEÍCULOS - DEVinCAR")
     Utils.print_formatado("1. Fabricar Veículo")

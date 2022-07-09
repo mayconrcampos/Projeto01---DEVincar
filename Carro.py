@@ -1,3 +1,4 @@
+from operator import truediv
 from Veiculo import Veiculo
 from utils import Utils
 from Database import Database
@@ -42,15 +43,20 @@ class Carro(Veiculo):
 
     def vender_veiculo(self):
         Utils.print_formatado("VENDA DE CARRO")
-        self.listar_infos("estoque")
 
-        while True:
+        existe = True
+        if not self.listar_infos("estoque"):
+            existe = False
+            
+
+        while existe:
             chassi = input("DIGITE O CHASSI DO CARRO DESEJADO: (COPIE E COLE AQUI): ----> ").upper().strip()
 
             if chassi:
                 busca = Database.busca_por_chassi(chassi, "Carro")
 
                 if busca:
+                    self.chassi = chassi
                     break
                 else:
                     print("CHASSI NÃO ENCONTRADO")
@@ -58,7 +64,7 @@ class Carro(Veiculo):
                 print("COPIE UM CHASSI DA LISTA DE CARROS E COLE NO INPUT")
 
 
-        while True:
+        while existe:
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
             Utils.clear_tela()
 
@@ -76,7 +82,7 @@ class Carro(Veiculo):
                     break
         
         
-        while True:
+        while existe:
             cpf_compr = input("DIGITE O CPF DO COMPRADOR: ")
             Utils.clear_tela()
 
@@ -115,7 +121,7 @@ class Carro(Veiculo):
                 break
 
             
-        while True:
+        while existe:
             portas = input("NÚMERO DE PORTAS: ")
             Utils.clear_tela()
 
@@ -127,18 +133,28 @@ class Carro(Veiculo):
                 print("OPÇÕES DISPONÍVEIS: 2 OU 4 PORTAS")
                 continue
         
-        Database.vender_VEICULO(chassi=chassi, placa=placa, cpf=self.cpf_compr, portas=portas)
+        if existe:
+            Database.vender_VEICULO(chassi=self.chassi, placa=self.placa, cpf=self.cpf_compr, portas=self.portas)
+        else:
+            print("NÃO EXISTEM CARROS EM ESTOQUE")
               
         
     def listar_infos(self, status: str):
-        Database.listar_VEICULOS("Carro", status=status)
+        if Database.listar_VEICULOS("Carro", status=status):
+            return True
+        return False
+        
 
 
     def alterar_infos(self):
         print("LISTANDO CARROS VENDIDOS".center(50, "-"))
         
+        existe = False
+        if self.listar_infos("vendido"):
+            existe = True
+            Utils.clear_tela()
         
-        while True:
+        while existe:
             self.listar_infos("vendido")
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL:\n --> COPIE A PLACA DESEJADA DA LISTA E COLE AQUI --> ").upper().strip()
             Utils.clear_tela()
@@ -162,7 +178,7 @@ class Carro(Veiculo):
                     print("PLACA NÃO ENCONTRADA")
         
 
-        while True:
+        while existe:
             print("ESCOLHA A COR".center(50, "-"))
             print("1. BRANCO")
             print("2. PRETO")
@@ -213,9 +229,10 @@ class Carro(Veiculo):
                 break
         
         
-        
-        
-        Database.alterar_VEICULO(placa=self.placa, cor=self.cor)
+        if existe:
+            Database.alterar_VEICULO(placa=self.placa, cor=self.cor)
+        else:
+            print("NÃO EXISTE NENHUM CARRO VENDIDO")
 
         
         

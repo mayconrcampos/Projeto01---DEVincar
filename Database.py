@@ -1,4 +1,5 @@
 
+from ast import Break
 from tinydb import TinyDB, Query
 from utils import Utils
 
@@ -33,13 +34,17 @@ class Database:
                         for _ in range(0, len(VENDIDOS)):
                             if VENDIDOS[_]['valor'] == max(valores):
                                 mais_caro = VENDIDOS[_]
-                            
-                    Utils.print_formatado("VEICULO VENDIDO MAIS CARO")
-                    print(f"TIPO: {mais_caro['tipo']} MODELO: {mais_caro['modelo']} \nPOTENCIA: {mais_caro['potencia']} COMBUSTIVEL: {mais_caro['combustivel']} VALOR: R${mais_caro['valor']:.2f}\n")
-                    Utils.print_formatado("-")
-                    print("VALOR: R$ ", end=" --> ")
-                    Utils.valor_por_extenso(str(mais_caro['valor']))
-                    print("\n\n\n")
+                    
+                    try:
+                        Utils.print_formatado("VEICULO VENDIDO MAIS CARO")
+                        print(f"TIPO: {mais_caro['tipo']} MODELO: {mais_caro['modelo']} \nPOTENCIA: {mais_caro['potencia']} COMBUSTIVEL: {mais_caro['combustivel']} VALOR: R${mais_caro['valor']:.2f}\n")
+                        Utils.print_formatado("-")
+                        print("VALOR: R$ ", end=" --> ")
+                        Utils.valor_por_extenso(str(mais_caro['valor']))
+                        print("\n\n\n")
+                    except UnboundLocalError:
+                        print("NENHUM VEÍCULO VENDIDO")
+                    
                 
                 # SE FOR BARATO
                 else:
@@ -54,13 +59,16 @@ class Database:
                         for _ in range(0, len(VENDIDOS)):
                             if VENDIDOS[_]['valor'] == min(valores):
                                 mais_barato = VENDIDOS[_]
-    
-                    Utils.print_formatado("VEICULO VENDIDO MAIS BARATO")
-                    print(f"TIPO: {mais_barato['tipo']} MODELO: {mais_barato['modelo']} \nPOTENCIA: {mais_barato['potencia']} COMBUSTIVEL: {mais_barato['combustivel']} VALOR: R${mais_barato['valor']:.2f}\n")
-                    Utils.print_formatado("-")
-                    print("VALOR: R$ ", end=" --> ")
-                    Utils.valor_por_extenso(str(mais_barato['valor']))
-                    print("\n\n\n")
+                    try:
+                        Utils.print_formatado("VEICULO VENDIDO MAIS BARATO")
+                        print(f"TIPO: {mais_barato['tipo']} MODELO: {mais_barato['modelo']} \nPOTENCIA: {mais_barato['potencia']} COMBUSTIVEL: {mais_barato['combustivel']} VALOR: R${mais_barato['valor']:.2f}\n")
+                        Utils.print_formatado("-")
+                        print("VALOR: R$ ", end=" --> ")
+                        Utils.valor_por_extenso(str(mais_barato['valor']))
+                        print("\n\n\n")
+                    except UnboundLocalError:
+                        print("NENHUM VEICULO VENDIDO")
+                    
 
 
             # SE FOR EM ESTOQUE
@@ -78,13 +86,16 @@ class Database:
                             if ESTOQUE[_]['valor'] == max(valores):
                                 mais_caro = ESTOQUE[_]
                                 break
-    
-                    Utils.print_formatado("VEICULO EM ESTOQUE MAIS CARO")
-                    print(f"TIPO: {mais_caro['tipo']} MODELO: {mais_caro['modelo']} \nPOTENCIA: {mais_caro['potencia']} COMBUSTIVEL: {mais_caro['combustivel']} VALOR: R${mais_caro['valor']:.2f}\n")
-                    Utils.print_formatado("-")
-                    print("VALOR: R$ ", end=" --> ")
-                    Utils.valor_por_extenso(str(mais_caro['valor']))
-                    print("\n\n\n")
+                    
+                    try:
+                        Utils.print_formatado("VEICULO EM ESTOQUE MAIS CARO")
+                        print(f"TIPO: {mais_caro['tipo']} MODELO: {mais_caro['modelo']} \nPOTENCIA: {mais_caro['potencia']} COMBUSTIVEL: {mais_caro['combustivel']} VALOR: R${mais_caro['valor']:.2f}\n")
+                        Utils.print_formatado("-")
+                        print("VALOR: R$ ", end=" --> ")
+                        Utils.valor_por_extenso(str(mais_caro['valor']))
+                        print("\n\n\n")
+                    except UnboundLocalError:
+                        print("ESTOQUE ZERADO")
                 
                 # SE FOR BARATO
                 else:
@@ -99,20 +110,24 @@ class Database:
                         for _ in range(0, len(ESTOQUE)):
                             if ESTOQUE[_]['valor'] == min(valores):
                                 mais_barato = ESTOQUE[_]
-    
-                    Utils.print_formatado("VEICULO EM ESTOQUE MAIS BARATO")
-                    print(f"TIPO: {mais_barato['tipo']} MODELO: {mais_barato['modelo']} \nPOTENCIA: {mais_barato['potencia']} COMBUSTIVEL: {mais_barato['combustivel']} VALOR: R${mais_barato['valor']:.2f}\n")
-                    Utils.print_formatado("-")
-                    print("VALOR: R$ ", end=" --> ")
-                    Utils.valor_por_extenso(str(mais_barato['valor']))
-                    print("\n\n\n")
+
+                    try:
+                        Utils.print_formatado("VEICULO EM ESTOQUE MAIS BARATO")
+                        print(f"TIPO: {mais_barato['tipo']} MODELO: {mais_barato['modelo']} \nPOTENCIA: {mais_barato['potencia']} COMBUSTIVEL: {mais_barato['combustivel']} VALOR: R${mais_barato['valor']:.2f}\n")
+                        Utils.print_formatado("-")
+                        print("VALOR: R$ ", end=" --> ")
+                        Utils.valor_por_extenso(str(mais_barato['valor']))
+                        print("\n\n\n")
+                    except UnboundLocalError:
+                        print("ESTOQUE ZERADO")
+                    
  
         else:
             print("NÃO EXISTEM CARROS CADASTRADOS")
             
     
     @staticmethod
-    def listar_VEICULOS(tipo: str, status: str = "vendido"):
+    def listar_VEICULOS(tipo: str, status: str = "vendido") -> bool:
         busca = Query()
     
         lista = carros.search(busca.tipo == tipo)
@@ -163,8 +178,10 @@ class Database:
                     print("TOTAL EM ESTOQUE: ", end=" -> ")
                     Utils.valor_por_extenso(str(total_estoque))
                     print("\n\n\n")
+                    return True
                 else:
                     print(f"NÃO HÁ ITENS DA CATEGORIA {tipo} NO ESTOQUE. VOCÊ PRECISA FABRICAR")
+                    return False
             
             # ITENS VENDIDOS
             else:
@@ -209,12 +226,17 @@ class Database:
                     print("TOTAL FATURADO: ", end=" -> ")
                     Utils.valor_por_extenso(str(total_vendidos))
                     print("\n\n\n")
+                    return True
                 else:
                     print(f"NÃO EXISTEM ITENS DA CATEGORIA {tipo} VENDIDOS")
+                    return False
+                
+                
                     
 
         else:
-            print(f"VEÍCULO TIPO: {tipo} NÃO ENCONTRADO")
+            print(f"VEÍCULO TIPO: {tipo} ESTOQUE ZERADO.")
+            return False
     
     @staticmethod
     def existe_PLACA(placa: str):
