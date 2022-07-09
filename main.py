@@ -4,14 +4,10 @@ from Carro import Carro
 from Database import Database
 from MotoTriciclo import MotoTriciclo
 from utils import Utils
-from Historico import Historico
-
-
 
 carro = Carro()
 moto = MotoTriciclo()
 camionete = Camionete()
-
 
 
 def menu_fabricacao(unidades: int):
@@ -68,7 +64,9 @@ while True:
     Utils.print_formatado("5. Visualizar Veículo mais caro")
     Utils.print_formatado("6. Visualizar Veículo mais barato")
     Utils.print_formatado("------------")
-    Utils.print_formatado("7. Sair do Sistema")
+    Utils.print_formatado("7. Alterar VEICULO COMPRADO")
+    Utils.print_formatado("------------")
+    Utils.print_formatado("8. Sair do Sistema")
 
     opcao = input("Opção: ")
 
@@ -255,7 +253,44 @@ while True:
                     else:
                         print("Opção numérica inválida")
             case "7":
+                while True:
+                    print("ALTERAR COR E VALOR DE VEICULO VENDIDO")
+                    Utils.print_formatado("SELECIONE A CATEGORIA")
+                    Utils.print_formatado("1. CARRO")
+                    Utils.print_formatado("2. MOTO")
+                    Utils.print_formatado("3. CAMIONETE")
+                    Utils.print_formatado("4. RETORNAR AO MENU PRINCIPAL")
+                    
+                    opcao = input("Opção: ")
+
+                    Utils.clear_tela()
+
+                    if opcao.isnumeric():
+                        if opcao == "1":
+                            carro.alterar_infos()
+                            break
+
+                        elif opcao == "2":
+                            break
+
+                        elif opcao == "3":
+                            pass
+
+                        elif opcao == "4":
+                            print("RETORNANDO AO MENU PRINCIPAL")
+                            break
+
+                        else:
+                            print("Opção inválida!")
+                    else:
+                        print("Opção numérica inválida")
+                
+
+            case "8":
                 print("Você saiu do Sistema!")
                 break
+
+            case _:
+                print("Opção inválida!")
     else:
         print("Caracter inválido! Digite números inteiros para navegar no Menu.")

@@ -63,40 +63,6 @@ class Carro(Veiculo):
                 print("COPIE UM CHASSI DA LISTA DE CARROS E COLE NO INPUT")
 
 
-        print("Fora do laço", busca)
-        #print("GERANDO NÚMERO DE CHASSI")
-        #chassi = Utils.gera_chassi()
-
-        #self.chassi = chassi
-        #print(f"CHASSI: {self.chassi}")
-
-
-#        while True:
-#            data_fab = input("DATA FABRICAÇÃO: 00-00-0000 : ")
-#            system("clear")
-#
-#            if not Utils.valida_data(data=data_fab):
-#                print("DATA DEVE SER VÁLIDA DE VERDADE")
-#                print("Deve ser no formato __-__-____")
-#
-#                continue
-#            else:
-#                self.data_fab = Utils.valida_data(data=data_fab)
-#                print("DATA FABRICAÇÃO INFORMADA COM SUCESSO.")
-#                break
-        
-#        while True:
-#            modelo = input("MODELO: ").upper()
-#            system("clear")
-#
-#            if not modelo:
-#                print("VOCÊ DEVE INSERIR O MODELO")
-#                continue
-#            else:
-#                self.modelo = modelo
-#                print("MODELO INSERIDO COM SUCESSO")
-#                break
-#        
         while True:
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
             system("clear")
@@ -114,24 +80,10 @@ class Carro(Veiculo):
                     print("PLACA INSERIDA COM SUCESSO")
                     break
         
-#        while True:
-#            valor = input("DIGITE O VALOR: R$: ")
-#            system("clear")
-#
-#            if not Utils.valida_valor(valor):
-#                print("DIGITE UM VALOR MONETÁRIO VÁLIDO")
-#                print("PODE SER NÚMERO INTEIRO (100)")
-#                print("PODE SER NÚMERO COM PONTO PRA CASA DECIMAL (100.00)")
-#                print("PODE SER NÚMERO COM VIRGULA PRA CASA DECIMAL (100,00)")
-#                continue
-#            else:
-#                self.valor = Utils.valida_valor(valor)
-#                print("VALOR INSERIDO COM SUCESSO")
-#                break
         
         while True:
             cpf_compr = input("DIGITE O CPF DO COMPRADOR: ")
-            system("clear")
+            Utils.clear_tela()
 
             if not Utils.valida_cpf(cpf_completo=cpf_compr):
                 print("DIGITE UM CPF VÁLIDO")
@@ -170,55 +122,6 @@ class Carro(Veiculo):
             
         print("CPF FORA DO LAÇO: ", self.cpf_compr)
 
-#        while True:
-#            print("ESCOLHA A COR".center(50, "-"))
-#            Utils.print_BRANCO("1. BRANCO")
-#            Utils.print_PRETO("2. PRETO")
-#            Utils.print_ROXO("3. ROXO")
-#            Utils.print_AMARELO("4. AMARELO")
-#            print("5. INDECISO? Você pode Sortear a COR")
-#
-#            opcao_cor = input("Opção: ")
-#            system("clear")
-#
-#            if opcao_cor.isnumeric():
-#                match opcao_cor:
-#                    case "1":
-#                        Utils.print_BRANCO()
-#                        self.cor = "BRANCO"
-#                    case "2":
-#                        Utils.print_PRETO()
-#                        self.cor = "PRETO"
-#                    case "3":
-#                        Utils.print_ROXO()
-#                        self.cor = "ROXO"
-#                    case "4":
-#                        Utils.print_AMARELO()
-#                        self.cor = "AMARELO"
-#                    case "5":
-#                        print("5. SORTEAR COR")
-#
-#                        while True:
-#                            sortear = input("Tecle ENTER pra sortear: ")
-#                            system("clear")
-#
-#                            if not sortear:
-#                                self.cor = Utils.sortear_cor()
-#                                print(f"COR SORTEADA: {self.cor}")
-#                                break
-#                            else:
-#                                self.cor = Utils.sortear_cor()
-#                                print(f"COR SORTEADA: {self.cor}")
-#                                break
-#
-#                    case _:
-#                        print("Opção inválida")
-#                
-#            else:
-#                print("Opção numérica inválida")
-#            
-#            if self.cor:
-#                break
         
 
         while True:
@@ -234,74 +137,6 @@ class Carro(Veiculo):
                 continue
         
         Database.vender_VEICULO(chassi, placa, self.cpf_compr, portas)
-        
-#        while True:
-#            print("COMBUSTÍVEL".center(50, "-"))
-#            print("1. GASOLINA\n2.FLEX")
-#
-#            combustivel = input("Opção: ")
-#            system("clear")
-#
-#            if combustivel.isnumeric():
-#                if combustivel == "1":
-#                    self.combustivel = "GASOLINA"
-#                    print(f"COMBUSTÍVEL SELECIONADO: {self.combustivel}")
-#                    break
-#
-#                elif combustivel == "2":
-#                    self.combustivel = "FLEX"
-#                    print(f"COMBUSTÍVEL SELECIONADO: {self.combustivel}")
-#                    break
-#                else:
-#                    print("Opção inválida!")
-#            else:
-#                print("Opção numérica inválida")
-       
-
-#        while True:
-#            print("POTÊNCIA".center(50, "-"))
-#            print("1. 1.0 65CV\n2. 1.6 100CV\n3. 2.0 150CV")
-#
-#            potencia = input("Opção: ")
-#            system("clear")
-#
-#            if potencia.isnumeric():
-#                if potencia == "1":
-#                    self.potencia = "1.0 65CV"
-#                    print(f"POTÊNCIA SELECIONADA: {self.potencia}")
-#                    break
-#
-#                elif potencia == "2":
-#                    self.potencia = "1.6 100CV"
-#                    print(f"POTÊNCIA SELECIONADA: {self.potencia}")
-#                    break
-#
-#                elif potencia == "3":
-#                    self.potencia = "2.0 150CV"
-#                    print(f"POTÊNCIA SELECIONADA: {self.potencia}")
-#                    break
-#
-#                else:
-#                    print("Opção inválida")
-#            else:
-#                print("Opção numérica inválida")
-        
-        
-        #carrodicio = {
-        #    "tipo": "Carro",
-        #    "chassi": self.chassi,
-        #    "data_fab": self.data_fab,
-        #    "modelo": self.modelo,
-        #    "placa": self.placa,
-        #    "valor": self.valor,
-        #    "cpf_compr": self.cpf_compr,
-        #    "cor": self.cor,
-        #    "portas": self.portas,
-        #    "combustivel": self.combustivel,
-        #    "potencia": self.potencia         
-        #}
-
-        #Database.adicionar_veiculo(veiculo=carrodicio)
               
         
     def listar_infos(self, status: str):
@@ -313,9 +148,9 @@ class Carro(Veiculo):
         
         
         while True:
-            Database.listar_VEICULOS("Carro")
-            placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
-            system("clear")
+            self.listar_infos("vendido")
+            placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL:\n --> COPIE A PLACA DESEJADA DA LISTA E COLE AQUI --> ").upper()
+            Utils.clear_tela()
 
             if not Utils.valida_placa(placa):
                 print("DIGITE UMA PLACA CORRETA")
@@ -342,7 +177,7 @@ class Carro(Veiculo):
             print("5. INDECISO? Você pode Sortear a COR")
 
             opcao_cor = input("Opção: ")
-            system("clear")
+            Utils.clear_tela()
 
             if opcao_cor.isnumeric():
                 match opcao_cor:
@@ -401,20 +236,15 @@ class Carro(Veiculo):
         
         Database.alterar_VEICULO(placa=placa, cor=self.cor, valor=valor)
 
-        Database.busca_por_PLACA(placa=placa, tipo="Carro")
         
         
-
-
-
-
-
-
+        
 #c = Carro()
-##
-##c.vender_veiculo()
-###DB.adicionar_veiculo(c)
-#c.listar_infos()
-##c.listar_carro("13V XXOUIS QV 5K7IJF")
 #c.alterar_infos()
+
+
+
+
+
+
 
