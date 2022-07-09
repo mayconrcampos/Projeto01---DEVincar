@@ -39,7 +39,7 @@
     <li>Versionamento com GIT</li>
 </ul>
 
-<h3>Descrição de como ficou o projeto e seu fluxo de trabalho</h3>
+<hr>
 
 <p>Ele é iniciado pelo main.py que gera um menu com 8 opções: Para executar, é necessário entrar no ambiente virtual e instalar as bibliotecas contidas em requirements.txt</p>
 
@@ -48,7 +48,9 @@
 <p><strong>$ python main.py</strong></p>
 
 <hr> 
+<h3>Descrição de como ficou o projeto e seu fluxo de trabalho</h3>
 
+<h1>MENU PRINCIPAL DA APLICAÇÃO</h1>
 <h4>1. Fabricar Veículo</h4>
     
 <li>SELECIONE A QUANTIDADE</li>
