@@ -4,8 +4,8 @@
 
 
 ### A montadora/revenda de veículos DEVinCar deseja automatizar todo o sistema de
-armazenamento de informações referentes aos carros fabricados. O sistema deve conter os
-seguintes tipos de carros, cada um com suas características:
+###armazenamento de informações referentes aos carros fabricados. O sistema deve conter os
+###seguintes tipos de carros, cada um com suas características:
 
 Moto/Triciclo
 
