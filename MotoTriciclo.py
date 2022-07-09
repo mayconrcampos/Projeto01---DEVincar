@@ -4,8 +4,6 @@ from Database import Database
 
 class MotoTriciclo(Veiculo):
     def __init__(self) -> None:
-        #super().__init__(self.chassi, self.data_fab, self.modelo, self.placa, self.valor, self.cpf_compr, self.cor)
-
         self.combustivel = None
         self.potencia = None
         self.num_rodas = None

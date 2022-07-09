@@ -152,4 +152,11 @@
 <img src="./prints/04.png" alt="entrarcomgoogle">
 
 
+<p>Algumas considerações: </p>
 
+<p>Como eu não encontrei uma biblioteca mais específica que tivesse nomes de carros, motos e camionetes de forma separada, fui obrigado a utilizar a mesma que gera nomes de carros para preencher os nomes. Logo, teremos motos e camionetes com nomes de carros, ou vice versa.</p>
+<p>Estou bem ciente que era pra ter escrito uma classe histórico, que tivesse seus métodos pra criarmos os relatórios do sistema, mas como o projeto foi se estendendo, pois levei muito tempo pra fazer as validações, então fiquei com o tempo curto para reverter um menu funcional para uma classe histórico... E como este menu estava cumprindo as funcionalidades pedidas nos requisitos, resolvi abortar a classe histórico pra que eu pudesse ao menos entregar funcionando.</p>
+<p>Em projetos assim, há uma corrida contra o tempo e temos de tomar decisões desse tipo, pois chega nessas horas a cabeça não consegue mais ter foco e energia pra reverter códigos.</p>
+<p>No mais, curti bastante escrever esse projeto, pois consegui colocar coisas legais e até divertidas nele.</p>
+
+<small>Maycon R. Campos - DEVinHouse - 09/07/2022</small>

@@ -6,8 +6,6 @@ from Database import Database
 
 class Camionete(Veiculo):
     def __init__(self) -> None:
-        #super().__init__(self.chassi, self.data_fab, self.modelo, self.placa, self.valor, self.cpf_compr, self.cor)
-
         self.portas = None
         self.cacamba = None
         self.potencia = None
