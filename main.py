@@ -32,7 +32,7 @@ def menu_fabricacao(unidades: int):
                     
             elif opcao_categoria == "2":
                 for _ in range(0, unidades):
-                    carro.fabricar_veiculo()
+                    moto.fabricar_veiculo()
                 
                 print(f"FORAM FABRICADOS {unidades} UNIDADES")
                 break
@@ -40,7 +40,7 @@ def menu_fabricacao(unidades: int):
 
             elif opcao_categoria == "3":
                 for _ in range(0, unidades):
-                    carro.fabricar_veiculo()
+                    camionete.fabricar_veiculo()
                 
                 print(f"FORAM FABRICADOS {unidades} UNIDADES")
                 break
@@ -135,7 +135,7 @@ while True:
                             break
 
                         elif opcao == "2":
-                            moto.listar_infos("Moto/Triciclo")
+                            moto.listar_infos("estoque")
                             break
 
                         elif opcao == "3":
@@ -169,7 +169,9 @@ while True:
                             break
 
                         elif opcao == "2":
-                            pass
+                            moto.vender_veiculo()
+                            break
+
                         elif opcao == "3":
                             pass
                         elif opcao == "4":
@@ -198,7 +200,9 @@ while True:
                             break
                         \
                         elif opcao == "2":
-                            pass
+                            moto.listar_infos("vendido")
+                            break
+                        
                         elif opcao == "3":
                             pass
                         elif opcao == "4":

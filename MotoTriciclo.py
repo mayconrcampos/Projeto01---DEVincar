@@ -5,47 +5,60 @@ from Database import Database
 
 class MotoTriciclo(Veiculo):
     def __init__(self) -> None:
-        #super().__init__(self.chassi, self.data_fab, self.nome, self.placa, self.valor, self.cpf_compr, self.cor)
+        #super().__init__(self.chassi, self.data_fab, self.modelo, self.placa, self.valor, self.cpf_compr, self.cor)
 
-        self.combustivel = "Gasolina"
+        self.combustivel = None
         self.potencia = None
         self.num_rodas = None
     
+    def fabricar_veiculo(self):
+        self.chassi = Utils.gera_chassi()
+        self.data_fab = Utils.gera_data_HOJE()
+        self.modelo = Utils.gerador_de_modelo()
+        self.placa = None
+        self.valor = Utils.gerador_de_valor()
+        self.cpf_compr = None
+        self.cor = Utils.gera_COR()
+        self.num_rodas = Utils.setNum_RODAS_MOTO_TRICICLO()
+        self.combustivel = Utils.setCombustivel_MOTO()
+        self.potencia = Utils.setPotencia_MOTO()
+
+        motoca = {
+            "tipo": "Moto/Triciclo",
+            "chassi": self.chassi,
+            "data_fab": self.data_fab,
+            "modelo": self.modelo,
+            "placa": self.placa,
+            "valor": self.valor,
+            "cpf_compr": self.cpf_compr,
+            "cor": self.cor,
+            "num_rodas": self.num_rodas,
+            "combustivel": self.combustivel,
+            "potencia": self.potencia,
+            "vendido": False         
+        }
+
+        Database.adicionar_veiculo(veiculo=motoca)
+
+    
     def vender_veiculo(self):
-        print("VENDA DE MOTO / TRICICLO".center(100, "-"))
-
-        print("GERANDO NÚMERO DE CHASSI")
-        chassi = Utils.gera_chassi()
-
-        self.chassi = chassi
-        print(f"CHASSI: {self.chassi}")
-
+        Utils.print_formatado("VENDA DE MOTO/TRICICLO")
+        self.listar_infos("estoque")
 
         while True:
-            data_fab = input("DATA FABRICAÇÃO: 00-00-0000 : ")
-            system("clear")
+            chassi = input("DIGITE O CHASSI DO CARRO DESEJADO: (COPIE E COLE AQUI): ----> ").upper().strip()
 
-            if not Utils.valida_data(data=data_fab):
-                print("DATA DEVE SER VÁLIDA DE VERDADE")
-                print("Deve ser no formato __-__-____")
+            if chassi:
+                busca = Database.busca_por_chassi(chassi, "Moto/Triciclo")
 
-                continue
+                if busca:
+                    break
+                else:
+                    print("CHASSI NÃO ENCONTRADO")
             else:
-                self.data_fab = Utils.valida_data(data=data_fab)
-                print("DATA FABRICAÇÃO INFORMADA COM SUCESSO.")
-                break
-        
-        while True:
-            modelo = input("MODELO: ").upper()
-            system("clear")
+                print("COPIE UM CHASSI DA LISTA DE CARROS E COLE NO INPUT")
 
-            if not modelo:
-                print("VOCÊ DEVE INSERIR O MODELO")
-                continue
-            else:
-                self.modelo = modelo
-                print("MODELO INSERIDO COM SUCESSO")
-                break
+
         
         while True:
             placa = input("DIGITE A PLACA: ANTIGA OU MERCOSUL: ").upper()
@@ -64,20 +77,6 @@ class MotoTriciclo(Veiculo):
                     print("PLACA INSERIDA COM SUCESSO")
                     break
         
-        while True:
-            valor = input("DIGITE O VALOR: R$: ")
-            system("clear")
-
-            if not Utils.valida_valor(valor):
-                print("DIGITE UM VALOR MONETÁRIO VÁLIDO")
-                print("PODE SER NÚMERO INTEIRO (100)")
-                print("PODE SER NÚMERO COM PONTO PRA CASA DECIMAL (100.00)")
-                print("PODE SER NÚMERO COM VIRGULA PRA CASA DECIMAL (100,00)")
-                continue
-            else:
-                self.valor = Utils.valida_valor(valor)
-                print("VALOR INSERIDO COM SUCESSO")
-                break
         
         while True:
             cpf_compr = input("DIGITE O CPF DO COMPRADOR: ")
@@ -117,124 +116,11 @@ class MotoTriciclo(Veiculo):
                 print(f"CPF INSERIDO COM SUCESSO: {self.cpf_compr}")
                 break
 
-       
 
-        while True:
-            print("ESCOLHA A COR".center(50, "-"))
-            Utils.print_BRANCO("1. BRANCO")
-            Utils.print_PRETO("2. PRETO")
-            Utils.print_ROXO("3. ROXO")
-            Utils.print_AMARELO("4. AMARELO")
-            print("5. INDECISO? Você pode Sortear a COR")
+        Database.vender_VEICULO(chassi=chassi, placa=placa, cpf=self.cpf_compr)
 
-            opcao_cor = input("Opção: ")
-            system("clear")
-
-            if opcao_cor.isnumeric():
-                match opcao_cor:
-                    case "1":
-                        Utils.print_BRANCO("1. BRANCO")
-                        self.cor = "BRANCO"
-                    case "2":
-                        Utils.print_PRETO("2. PRETO")
-                        self.cor = "PRETO"
-                    case "3":
-                        Utils.print_ROXO("3. ROXO")
-                        self.cor = "ROXO"
-                    case "4":
-                        Utils.print_AMARELO("4. AMARELO")
-                        self.cor = "AMARELO"
-                    case "5":
-                        print("5. SORTEAR COR")
-
-                        while True:
-                            sortear = input("Tecle ENTER pra sortear: ")
-                            system("clear")
-
-                            if not sortear:
-                                self.cor = Utils.sortear_cor()
-                                print(f"COR SORTEADA: {self.cor}")
-                                break
-                            else:
-                                self.cor = Utils.sortear_cor()
-                                print(f"COR SORTEADA: {self.cor}")
-                                break
-
-                    case _:
-                        print("Opção inválida")
-                
-            else:
-                print("Opção numérica inválida")
-            
-            if self.cor:
-                break
-        
-
-        while True:
-            rodas = input("NÚMERO DE RODAS: ")
-            system("clear")
-
-            if Utils.valida_num_rodas(rodas):
-                self.num_rodas = Utils.valida_num_rodas(rodas)
-                print(f"NÚMERO DE RODAS: {self.num_rodas}")
-                break
-            else:
-                print("OPÇÕES DISPONÍVEIS: 2 OU 3 RODAS")
-                continue
-        
-        
-        
-        print("COMBUSTÍVEL PADRÃO DE MOTO/TRICICLO: GASOLINA".center(50, "-"))
-        
-        
-        
-        while True:
-            print("POTÊNCIA".center(50, "-"))
-            print("1. 150cc 14,2CV\n2. 250cc 22,4CV\n3. 650cc 88,4CV")
-
-            potencia = input("Opção: ")
-            system("clear")
-
-            if potencia.isnumeric():
-                if potencia == "1":
-                    self.potencia = "150cc 14,2CV"
-                    print(f"POTÊNCIA SELECIONADA: {self.potencia}")
-                    break
-
-                elif potencia == "2":
-                    self.potencia = "250cc 22,4CV"
-                    print(f"POTÊNCIA SELECIONADA: {self.potencia}")
-                    break
-
-                elif potencia == "3":
-                    self.potencia = "650cc 88,4CV"
-                    print(f"POTÊNCIA SELECIONADA: {self.potencia}")
-                    break
-
-                else:
-                    print("Opção inválida")
-            else:
-                print("Opção numérica inválida")
-        
-        
-        motoca = {
-            "tipo": "Moto/Triciclo",
-            "chassi": self.chassi,
-            "data_fab": self.data_fab,
-            "modelo": self.modelo,
-            "placa": self.placa,
-            "valor": self.valor,
-            "cpf_compr": self.cpf_compr,
-            "cor": self.cor,
-            "num_rodas": self.num_rodas,
-            "combustivel": self.combustivel,
-            "potencia": self.potencia         
-        }
-
-        Database.adicionar_veiculo(veiculo=motoca)
-
-    def listar_infos(self):
-        Database.listar_VEICULOS("Moto/Triciclo")
+    def listar_infos(self, status: str):
+        Database.listar_VEICULOS("Moto/Triciclo", status=status)
 
     def alterar_infos(self):
         print("LISTANDO MOTOS / TRICICLOS VENDIDOS".center(50, "-"))

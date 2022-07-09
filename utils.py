@@ -3,6 +3,7 @@ from random import randint
 from faker import Faker
 from faker_vehicle import VehicleProvider
 from os import system, name
+from num2words import num2words
 
 fake = Faker(["pt-BR", "pt-BR", "pt-BR", "pt-BR"])
 fake.add_provider(VehicleProvider)
@@ -288,7 +289,7 @@ class Utils:
 
     @staticmethod
     def print_formatado(texto: str):
-        print(texto.center(100, "-"))
+        print(texto.center(120, "-"))
 
 
 #   GERADORES ALEATÓRIOS PARA VEICULOS
@@ -337,6 +338,10 @@ class Utils:
         potencia = ["2.5 130CV", "3.0 190CV", "2.0 150CV"]
 
         return potencia[randint(0, 2)]
+    
+    @staticmethod
+    def setNum_RODAS_MOTO_TRICICLO():
+        return randint(2, 3)
 
     @staticmethod
     def gera_COR():
@@ -345,8 +350,57 @@ class Utils:
     @staticmethod
     def clear_tela():
         return system("cls") if name == "nt" else system("clear")
-        
+    
 
+    @staticmethod
+    def valor_por_extenso(number_p: str):
+        # sOLUÇÃO DO STACK OVERFLOW PARA ESCREVER VALORES POR EXTENSO
+        
+        number_p = number_p.replace(".", ",")
+
+        if number_p.find(',')!=-1:
+            number_p = number_p.split(',')
+            number_p1 = int(number_p[0].replace('.',''))
+            number_p2 = int(number_p[1])
+        else:
+            number_p1 = int(number_p.replace('.',''))
+            number_p2 = 0    
+
+        if number_p1 == 1:
+            aux1 = ' real'
+        else:
+            aux1 = ' reais'
+
+        if number_p2 == 1:
+            aux2 = ' centavo'
+        else:
+            aux2 = ' centavos'
+
+        text1 = ''
+        if number_p1 > 0:
+            text1 = num2words(number_p1,lang='pt_BR') + str(aux1)
+        else:
+            text1 = ''
+
+        if number_p2 > 0:
+            text2 = num2words(number_p2,lang='pt_BR') + str(aux2) 
+        else: 
+            text2 = ''
+
+        if (number_p1 > 0 and number_p2 > 0):
+            result = text1 + ' e ' + text2
+        else:
+            result = text1 + text2
+
+        print(result)
+
+        
+Utils.valor_por_extenso("1500.99")
+Utils.valor_por_extenso("15045.35")
+Utils.valor_por_extenso("100000.99")
+Utils.valor_por_extenso("850,87")
+Utils.valor_por_extenso("558,85")
+Utils.valor_por_extenso("80,12")
 #Utils.limpa_tela()
 #print(Utils.gerador_de_valor())
 #print(Utils.gera_data_HOJE())

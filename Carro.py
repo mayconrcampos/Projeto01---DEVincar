@@ -120,10 +120,6 @@ class Carro(Veiculo):
                 break
 
             
-        print("CPF FORA DO LAÇO: ", self.cpf_compr)
-
-        
-
         while True:
             portas = input("NÚMERO DE PORTAS: ")
             system("clear")
@@ -136,7 +132,7 @@ class Carro(Veiculo):
                 print("OPÇÕES DISPONÍVEIS: 2 OU 4 PORTAS")
                 continue
         
-        Database.vender_VEICULO(chassi, placa, self.cpf_compr, portas)
+        Database.vender_VEICULO(chassi=chassi, placa=placa, cpf=self.cpf_compr, portas=portas)
               
         
     def listar_infos(self, status: str):
