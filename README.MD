@@ -10,7 +10,7 @@
     <li>Camionete</li>
 </ul>
 
-<p>Cada um deles deverá possuir características em comum, porém cada um deles vão possuir as suas características particulares.</p>
+<p>Apesar deles compartilharem vários atributos em comum, existem atributos que cada um deles têm que os outros dois não possuem.</p>
 
 <p><strong>Professor: </strong>Yan Esteves<p>
 <p><strong>Curso: </strong>Senai DEVinHouse[ConectaNuvem] - MÓDULO 02</p>
