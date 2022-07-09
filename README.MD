@@ -42,89 +42,89 @@
 <h3>Descrição de como ficou o projeto e seu fluxo de trabalho</h3>
 
 <p>Ele é iniciado pelo main.py que gera um menu com 8 opções:</p>
+
+<hr> 
+
+<h4>1. Fabricar Veículo</h4>
+    
+<li>SELECIONE A QUANTIDADE</li>
+
+<h5>1.1 10 unidades</h5>
 <ul>
-    <li>1. Fabricar Veículo</li>
-    <li>
-        <li>SELECIONE A QUANTIDADE</li>
-        <li>1.1 10 unidades</li>
-        <li>
-            <li>SELECIONE A CATEGORIA</li>
-            <li>1.1.1 Carro</li>
-            <li>1.1.2 Moto/Triciclo</li>
-            <li>1.1.3 Camionete</li>
-        </li>
-        <li>1.2 20 unidades</li>
-        <li>
-            <li>SELECIONE A CATEGORIA</li>
-            <li>1.2.1 Carro</li>
-            <li>1.2.2 Moto/Triciclo</li>
-            <li>1.2.3 Camionete</li>
-        </li>
-        <li>1.3 50 unidades</li>
-        <li>
-            <li>SELECIONE A CATEGORIA</li>
-            <li>1.3.1 Carro</li>
-            <li>1.3.2 Moto/Triciclo</li>
-            <li>1.3.3 Camionete</li>
-        </li>
-        <li>1.4 Retornar ao menu principal</li>
-    </li>
+    <li>SELECIONE A CATEGORIA</li>
+    <li>1.1.1 Carro</li>
+    <li>1.1.2 Moto/Triciclo</li>
+    <li>1.1.3 Camionete</li>
 </ul>
+
+<h5>1.2 20 unidades</h5>
 <ul>
-    <li>2. Listar Veículos em estoque</li>
-    <li>
-        <li>ESCOLHA A CATEGORIA PARA LISTAR O ESTOQUE</li>
-        <li>2.1 Carro</li>
-        <li>2.2 Moto/Triciclo</li>
-        <li>2.3 Camionete</li>
-        <li>2.4 Retornar ao menu principal</li>
-    </li>
+    <li>SELECIONE A CATEGORIA</li>
+    <li>1.2.1 Carro</li>
+    <li>1.2.2 Moto/Triciclo</li>
+    <li>1.2.3 Camionete</li>
 </ul>
+
+<h5>1.3 50 unidades</h5>
 <ul>
-    <li>3. Vender veículo</li>
-    <li>
-        <li>ESCOLHA A CATEGORIA</li>
-        <li>3.1 Carro</li>
-        <li>3.2 Moto/Triciclo</li>
-        <li>3.3 Camionete</li>
-        <li>3.4 Retornar ao menu principal</li>
-    </li>
-</ul>
+    <li>SELECIONE A CATEGORIA</li>
+    <li>1.3.1 Carro</li>
+    <li>1.3.2 Moto/Triciclo</li>
+    <li>1.3.3 Camionete</li>
+</ul>      
+<h5>1.4 Retornar ao menu principal</h5>
+
+
+<h4>2. Listar Veículos em estoque</h4>
 <ul>
-    <li>4. Listar Veículos vendidos</li>
-    <li>
-        <li>ESCOLHA A CATEGORIA PARA LISTAR VEÍCULOS VENDIDOS</li>
-        <li>4.1 Carro</li>
-        <li>4.2 Moto/Triciclo</li>
-        <li>4.3 Camionete</li>
-        <li>4.4 Retornar ao menu principal</li>
-    </li>
+    <li>ESCOLHA A CATEGORIA PARA LISTAR O ESTOQUE</li>
+    <li>2.1 Carro</li>
+    <li>2.2 Moto/Triciclo</li>
+    <li>2.3 Camionete</li>
+    <li>2.4 Retornar ao menu principal</li>
 </ul>
+
+<h4>3. Vender veículo</h4>
 <ul>
-    <li>5. Visualizar veículo mais caro</li>
-    <li>
-        <li>5.1 Em Estoque</li>
-        <li>5.2 Vendidos</li>
-    </li>
+    <li>ESCOLHA A CATEGORIA</li>
+    <li>3.1 Carro</li>
+    <li>3.2 Moto/Triciclo</li>
+    <li>3.3 Camionete</li>
+    <li>3.4 Retornar ao menu principal</li>
 </ul>
+
+<h4>4. Listar Veículos vendidos</h4>
 <ul>
-    <li>6. Visualizar veículo mais barato</li>
-    <li>
-        <li>6.1 Em Estoque</li>
-        <li>6.2 Vendidos</li>
-    </li>
+    <li>ESCOLHA A CATEGORIA PARA LISTAR VEÍCULOS VENDIDOS</li>
+    <li>4.1 Carro</li>
+    <li>4.2 Moto/Triciclo</li>
+    <li>4.3 Camionete</li>
+    <li>4.4 Retornar ao menu principal</li>
 </ul>
+
+<h4>5. Visualizar veículo mais caro</h4>
 <ul>
-    <li>7. Alterar Veículo Comprado</li>
-    <li>
-        <li>SELECIONE A CATEGORIA</li>
-        <li>7.1 Carro</li>
-        <li>7.2 Moto/Triciclo</li>
-        <li>7.3 Camionete</li>
-        <li>7.4 Retornar ao menu principal</li>
-    </li>
-    <li>8. Sair do Sistema</li>
+    <li>5.1 Em Estoque</li>
+    <li>5.2 Vendidos</li>
 </ul>
+
+<h4>6. Visualizar veículo mais barato</h4>
+<ul>
+    <li>6.1 Em Estoque</li>
+    <li>6.2 Vendidos</li>
+</ul>
+
+<h4>7. Alterar Veículo Comprado</h4>
+<ul>
+    <li>SELECIONE A CATEGORIA</li>
+    <li>7.1 Carro</li>
+    <li>7.2 Moto/Triciclo</li>
+    <li>7.3 Camionete</li>
+    <li>7.4 Retornar ao menu principal</li>
+</ul>
+<h4>8. Sair do Sistema</h4>
+
+<hr>
 
 <h3>FLUXO DO PROGRAMA</h3>
 
